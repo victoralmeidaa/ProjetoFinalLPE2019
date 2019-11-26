@@ -29,7 +29,7 @@ typedef struct Funcionario{ //ESTRUTURA FUNCINARIO
 }
 Funcionario;
 
-typedef struct Servico{ //ESTRUTURA SERVIÇO
+typedef struct Servico{ //ESTRUTURA SERVICO
     char titulo[20];
     char descricao[50];
     int idServ;
@@ -39,7 +39,7 @@ typedef struct Servico{ //ESTRUTURA SERVIÇO
 Servico;
 
 /* FUNÇÓES */
-Cliente GetCliente(){ //FUNÇÃO PARA LER DADOS DO CLIENTES
+Cliente GetCliente(){ //FUNCAO PARA LER DADOS DO CLIENTES
     Cliente cli;
     printf("NOME: ");
     gets(&cli.nome);
@@ -52,7 +52,7 @@ Cliente GetCliente(){ //FUNÇÃO PARA LER DADOS DO CLIENTES
     return cli;
 }
 
-Carro GetCarro(){ //FUNÇÃO PARA LER DADOS DE CARROS
+Carro GetCarro(){ //FUNCAO PARA LER DADOS DE CARROS
     Carro car;
     Cliente cli;
     printf("MODEL: ");
@@ -67,7 +67,7 @@ Carro GetCarro(){ //FUNÇÃO PARA LER DADOS DE CARROS
     return car;
 }
 
-Funcionario Getfuncionario(){ //FUNÇÃO PARA LER DADOS DE CARROS
+Funcionario Getfuncionario(){ //FUNCAO PARA LER DADOS DE CARROS
     Funcionario fun;
     printf("NOME: ");
     gets(&fun.nome);
@@ -89,6 +89,31 @@ Servico GetServico(){ //FUNCAO PARA LER DADOS DE CARROS
     scanf("%d",&serv.idServ);
 
 }
+
+/*   FUNCAO MENU    */
+void menu(){
+    int opcao;
+    do
+    {
+        printf("|-------------------------------|\n");
+        printf("|    GERENCIADOR DE LAVAJATO    |\n");
+        printf("|-------------------------------|\n");
+        printf("|-------------------------------|\n");
+        printf("|  1  |       CLIENTE           |\n");
+        printf("|-------------------------------|\n");
+        printf("|  2  |       SERVIÇO           |\n");
+        printf("|-------------------------------|\n");
+        printf("|  3  |       FUNCIONARIOS      |\n");
+        printf("|-------------------------------|\n");
+        printf("|  4  |       SAIR              |\n");
+        printf("|-------------------------------|\n");
+        printf("| Escolha uma opcao: ");
+        scanf("%d", &opcao);
+        system("cls");
+
+    } while(opcao!=4);
+}
+
 int main(){
     Cliente cli;
     cli = GetCliente();
