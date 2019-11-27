@@ -154,6 +154,26 @@ void menu(){
                     }
                     break;
 
+                    case 2:{
+                        printf("|-------------------------------|\n");
+                        printf("|  2  |       CADASTRAR         |\n");
+                        printf("|-------------------------------|\n");
+                        FILE *arq_cliente;    //PONTEIRO PARA ARQUIVO
+                        arq_cliente = fopen("arquivo_cliente.txt", "a"); //ABRIR ARQUIVO CLIENTE
+                        if(arq_cliente ==  NULL){ //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
+                            printf("Erro na abertura do arquivo!"); //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
+                            return 1;
+                        }
+                        Cliente cli;
+                        cli = GetCliente(); //CHAMA FUNCAO PARA LER DADOS DO CLIENTE
+                        fprintf(arq_cliente,"%s %s %s %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli); //GRAVAR DADOS DO CLIENTE NO ARQUIVO CLIENTE
+                        fclose(arq_cliente); //FECHAR ARQUIVO CLIENTE
+                        printf("Cliente Cadastrado com Sucesso\n"); //MENSAGEM CONCLUSSAO
+                        system("pause");
+                        system("cls");
+                    }
+                    break;
+
 
     } while(opcao!=4);
 }
