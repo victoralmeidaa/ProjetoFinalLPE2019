@@ -42,10 +42,13 @@ Servico;
 Cliente GetCliente(){ //FUNCAO PARA LER DADOS DO CLIENTES
     Cliente cli;
     printf("NOME: ");
+    setbuf(stdin,NULL);
     gets(&cli.nome);
     printf("CPF: ");
+    setbuf(stdin,NULL);
     gets(&cli.cpf);
     printf("ENDERECO: ");
+    setbuf(stdin,NULL);
     gets(&cli.endereco);
     printf("ID: ");
     scanf("%d",&cli.idCli);
@@ -56,10 +59,13 @@ Carro GetCarro(){ //FUNCAO PARA LER DADOS DE CARROS
     Carro car;
     Cliente cli;
     printf("MODEL: ");
+    setbuf(stdin,NULL);
     gets(&car.modelo);
     printf("COR: ");
+    setbuf(stdin,NULL);
     gets(&car.cor);
     printf("PLACA: ");
+    setbuf(stdin,NULL);
     gets(&car.placa);
     printf("ID CARRO:");
     scanf("%d",&car.idCar);
@@ -70,10 +76,13 @@ Carro GetCarro(){ //FUNCAO PARA LER DADOS DE CARROS
 Funcionario Getfuncionario(){ //FUNCAO PARA LER DADOS DE CARROS
     Funcionario fun;
     printf("NOME: ");
+    setbuf(stdin,NULL);
     gets(&fun.nome);
     printf("CPF: ");
+    setbuf(stdin,NULL);
     gets(&fun.cpf);
     printf("ENDERECO: ");
+    setbuf(stdin,NULL);
     gets(&fun.endereco);
     printf("ID: ");
     scanf("%d",&fun.idFun);
@@ -82,8 +91,10 @@ Funcionario Getfuncionario(){ //FUNCAO PARA LER DADOS DE CARROS
 Servico GetServico(){ //FUNCAO PARA LER DADOS DE CARROS
     Servico serv;
     printf("TITULO: ");
+    setbuf(stdin,NULL);
     gets(&serv.titulo);
     printf("DESCRICAO: ");
+    setbuf(stdin,NULL);
     gets(&serv.descricao);
     printf("ID SERVICO: ");
     scanf("%d",&serv.idServ);
@@ -131,7 +142,7 @@ void menu(){
 				scanf("%d",&escolha_cliente);
 				system("cls");
 
-                    switch(escolha_cliente){
+                switch(escolha_cliente){
                     case 1:{
                         int consultaID;
 
@@ -143,15 +154,15 @@ void menu(){
 						Cliente cli;
 						FILE *arq_cliente;    //PONTEIRO PARA ARQUIVO
 						arq_cliente = fopen("arquivo_cliente.txt", "r"); //ABRIR ARQUIVO CLIENTE
-						while(fscanf(arq_cliente,"%s %s %s %d",cli.nome,cli.cpf,cli.endereco,&cli.idCli)!= EOF){
-                            if(consultaID == cli.idCli){
-                                    printf("NOME: %s\nCPF: %s\nENDERECO: %s\nID: %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli);
+						while(fscanf(arq_cliente,"%s %s %s %d",cli.nome,cli.cpf,cli.endereco,&cli.idCli)!= EOF){ //LER TODAS AS LINHAS DO ARQUIVO
+                            if(consultaID == cli.idCli){    //COMPARAR OS IDs CADASTRADOS NO ARQUIVO CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
+                                    printf("NOME: %s\nCPF: %s\nENDERECO: %s\nID: %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli); //RETORNA OS DADOS
                             }
 						}
 						fclose(arq_cliente); //FECHAR ARQUIVO CLIENTE
 						system("pause");
 						system("cls");
-                    }
+                    } // FIM CASE 1 CLIENTE CONSULTA
                     break;
 
                     case 2:{
@@ -165,21 +176,65 @@ void menu(){
                             return 1;
                         }
                         Cliente cli;
-                        cli = GetCliente(); //CHAMA FUNCAO PARA LER DADOS DO CLIENTE
-                        fprintf(arq_cliente,"%s %s %s %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli); //GRAVAR DADOS DO CLIENTE NO ARQUIVO CLIENTE
+                        cli = GetCliente(); //CHAMA FUNCAO PARA LER DADOS DO CLIENTE // RETORNAR DADOS PARA "CLI"
+                        fprintf(arq_cliente,"%s %s %s %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli); //GRAVAR DADOS DO "CLI" CLIENTE NO ARQUIVO CLIENTE
                         fclose(arq_cliente); //FECHAR ARQUIVO CLIENTE
-                        printf("Cliente Cadastrado com Sucesso\n"); //MENSAGEM CONCLUSSAO
+                        printf("Cliente Cadastrado com Sucesso\n"); //MENSAGEM DE CONCLUSSAO
                         system("pause");
-                        system("cls");
-                    }
+                            int escolha_carro=0;
+                            printf("|-------------------------------|\n");
+                            printf("|        CADASTRAR CARRO        |\n");
+                            printf("|-------------------------------|\n");
+                            printf("|-------------------------------|\n");
+                            printf("|  1  |          SIM            |\n");
+                            printf("|-------------------------------|\n");
+                            printf("|  2  |          NAO            |\n");
+                            printf("|-------------------------------|\n");
+                            printf("DESEJA CADASTRAR CARRO?: ");
+                            scanf("%d",&escolha_carro);
+                            system("cls");
+                            switch(escolha_carro){
+                                case 1:{
+                                    printf("|-------------------------------|\n");
+                                    printf("|        CADASTRAR CARRO        |\n");
+                                    printf("|-------------------------------|\n");
+                                    FILE *arq_carro;
+                                    arq_carro = fopen("arquivo_carro.txt", "a"); //ABRIR ARQUIVO CARRO
+                                    if(arq_carro ==  NULL){ //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CARRO
+                                        printf("Erro na abertura do arquivo!"); //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
+                                        return 1;
+                                    }
+                                    Carro car;
+                                    car = GetCarro();
+                                    fprintf(arq_carro,"%s %s %s %d %d\n",car.modelo,car.cor,car.placa,car.idCar,car.idCli); //GRAVAR DADOS DO "CAR" CARRO NO ARQUIVO CARRO
+                                    fclose(arq_carro); //FECHAR ARQUIVO CARRO
+                                    printf("Carro Cadastrado com Sucesso\n"); //MENSAGEM DE CONCLUSSAO
+
+                                }
+                                break;
+                                case 2:{
+                                    printf("Nao cadastrar Carro\nVoce pode cadastrar carro em Buscar Cliente"); //MENSAGEM DE CONCLUSSAO
+                                    system("pause");
+                                    system("cls");
+                                }
+                                break;
+                            }
+                    } // FIM CASE 2 CLENTE CADASTRO
                     break;
 
 
-    } while(opcao!=4);
-}
+                } //FIM SWITCH CLENTE
+            } // FIM CASE 1 MENU/CLIENTE
+            break;
+
+
+        } //FIM SWITCH MENU
+    } while(opcao!=4);// FIM DO WHILE
+}//FIM MENU
 
 /*INICIO*/
 int main(){
     menu();
     printf("FIM");
 }
+
