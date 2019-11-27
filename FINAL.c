@@ -114,6 +114,7 @@ void menu(){
         switch(opcao){
             case 1:{
                 int escolha_cliente;
+
                 printf("|-------------------------------|\n");
 				printf("|             CLIENTE           |\n");
 				printf("|-------------------------------|\n");
@@ -133,6 +134,7 @@ void menu(){
                     switch(escolha_cliente){
                     case 1:{
                         int consultaID;
+
                         printf("|-------------------------------|\n");
                         printf("|            CONSULTA           |\n");
                         printf("|-------------------------------|\n");
