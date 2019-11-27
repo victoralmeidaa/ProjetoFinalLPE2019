@@ -101,7 +101,7 @@ void menu(){
         printf("|-------------------------------|\n");
         printf("|  1  |       CLIENTE           |\n");
         printf("|-------------------------------|\n");
-        printf("|  2  |       SERVIÇO           |\n");
+        printf("|  2  |       SERVICO           |\n");
         printf("|-------------------------------|\n");
         printf("|  3  |       FUNCIONARIOS      |\n");
         printf("|-------------------------------|\n");
@@ -111,11 +111,53 @@ void menu(){
         scanf("%d", &opcao);
         system("cls");
 
+        switch(opcao){
+            case 1:{
+                int escolha_cliente;
+                printf("|-------------------------------|\n");
+				printf("|             CLIENTE           |\n");
+				printf("|-------------------------------|\n");
+				printf("|-------------------------------|\n");
+				printf("|  1  |       CONSULTA          |\n");
+				printf("|-------------------------------|\n");
+				printf("|  2  |       CADASTRAR         |\n");
+				printf("|-------------------------------|\n");
+				printf("|  3  |        LISTAR           |\n");
+				printf("|-------------------------------|\n");
+				printf("|  4  |        EXCLUIR          |\n");
+				printf("|-------------------------------|\n");
+				printf("| Escolha uma opcao: ");
+				scanf("%d",&escolha_cliente);
+				system("cls");
+
+                    switch(escolha_cliente){
+                    case 1:{
+                        int consultaID;
+                        printf("|-------------------------------|\n");
+                        printf("|            CONSULTA           |\n");
+                        printf("|-------------------------------|\n");
+                        printf("| Digite o ID do Cliente: ");
+                        scanf ("%d",&consultaID);
+						Cliente cli;
+						FILE *arq_cliente;    //PONTEIRO PARA ARQUIVO
+						arq_cliente = fopen("arquivo_cliente.txt", "r"); //ABRIR ARQUIVO CLIENTE
+						while(fscanf(arq_cliente,"%s %s %s %d",cli.nome,cli.cpf,cli.endereco,&cli.idCli)!= EOF){
+                            if(consultaID == cli.idCli){
+                                    printf("NOME: %s\nCPF: %s\nENDERECO: %s\nID: %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli);
+                            }
+						}
+						fclose(arq_cliente); //FECHAR ARQUIVO CLIENTE
+						system("pause");
+						system("cls");
+                    }
+                    break;
+
+
     } while(opcao!=4);
 }
 
+/*INICIO*/
 int main(){
-    Cliente cli;
-    cli = GetCliente();
-
+    menu();
+    printf("FIM");
 }
