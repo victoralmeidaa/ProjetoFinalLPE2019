@@ -31,7 +31,7 @@ Funcionario;
 
 typedef struct Servico{ //ESTRUTURA DO TIPO SERVICO
     char titulo[20];
-    char descricao[50];
+    char preco[50];
     int idServ;
     int idFun;
     int idCar;
@@ -92,9 +92,9 @@ Servico GetServico(){ //FUNCAO PARA LER DADOS DE CARROS
     printf("TITULO: ");
     setbuf(stdin,NULL);
     gets(&serv.titulo);
-    printf("DESCRICAO: ");
+    printf("PRECO: ");
     setbuf(stdin,NULL);
-    gets(&serv.descricao);
+    gets(&serv.preco);
     printf("ID SERVICO: ");
     scanf("%d",&serv.idServ);
     return serv; //FUNCAO RETORNA ESTRUTURA DO TIPO SERVICO.
@@ -352,7 +352,7 @@ void menu(){ //INICIO FUNCAO MENU
                         Carro car;
                         FILE *temp_carro, *arq_carro;
                         if((arq_carro = fopen("arquivo_carro.txt","rb")) == NULL);
-                        if((temp_carro = fopen("temp_carro","wb")) == NULL);
+                        if((temp_carro = fopen("temp_carro.txt","wb")) == NULL);
 
 						// PASSA TODOS OS REGISTROS DOS ARQUIVOS PARA OS ARQUIVOS TEMPORARIOS, EXCETO O REGISTRO COM O ID QUE SERA EXCLUIDO
                         while(fscanf(arq_cliente,"%s %s %s %d",cli.nome,cli.cpf,cli.endereco,&cli.idCli) != EOF){ //LISTANDO ARQUIVO_CLIENTE
@@ -362,7 +362,7 @@ void menu(){ //INICIO FUNCAO MENU
                         }
                         while(fscanf(arq_carro,"%s %s %s %d %d",car.modelo,car.cor,car.placa,&car.idCar,&car.idCli) != EOF){//LISTANDO ARQUIVO_CARRO
                             if(excluirID != car.idCli){
-                                fprintf(temp_carro,"%s %s %s %d %d",car.modelo,car.cor,car.placa,car.idCar,car.idCli);
+                                fprintf(temp_carro,"%s %s %s %d %d\n",car.modelo,car.cor,car.placa,car.idCar,car.idCli);
                             }
                         }
 
@@ -371,12 +371,19 @@ void menu(){ //INICIO FUNCAO MENU
                         fclose(temp_cliente);
                         fclose(arq_carro);
                         fclose(temp_carro);
+                        system("pause");
+
+
+
+                        remove("arquivo_carro.txt"); //EXCLUIR ARQUIVO_CARRO
+                        //rename("temp_carro.txt", "arquivo_carro.txt"); // RENOMEAR ARQUIVO TEMP_CARRO PARA ARQUIVO_CARRO
+                        rename("temp_carro.txt", "arquivo_carro.txt"); // RENOMEAR ARQUIVO TEMP PARA ARQUIVO CLIENTE
 
                         remove("arquivo_cliente.txt"); //EXCLUIR ARQUIVO_CLIENTE
                         rename("temp_cliente.txt", "arquivo_cliente.txt"); // RENOMEAR ARQUIVO TEMP_CLIENTE PARA ARQUIVO_CLIENTE
-                        remove("arquivo_carro.txt"); //EXCLUIR ARQUIVO_CARRO
-                        rename("temp_carro.txt", "arquivo_carro.txt"); // RENOMEAR ARQUIVO TEMP_CARRO PARA ARQUIVO_CARRO
-                        printf("CLIENTE EXCLUIDO!");
+
+
+                        printf("CLIENTE EXCLUIDO!\n");
                         system("pause");
                         system("cls");
                     }
@@ -400,8 +407,10 @@ void menu(){ //INICIO FUNCAO MENU
                         }
                         fclose(arq_carro);
                         fclose(temp_car);
+
                         remove("arquivo_carro.txt"); //EXCLUIR ARQUIVO CLIENTE
                         rename("temp_carro.txt", "arquivo_carro.txt"); // RENOMEAR ARQUIVO TEMP PARA ARQUIVO CLIENTE
+
                         printf("\nCARRO EXCLUIDO!\n");
                         system("pause");
                         system("cls");
@@ -441,9 +450,9 @@ void menu(){ //INICIO FUNCAO MENU
 						int auxIDServ,auxIDFun,auxIDCar,auxIDCli; // AUXILIAR PARA GUARDA IDs.
 						FILE *arq_servico;   //PONTEIRO PARA ARQUIVO.
 						arq_servico = fopen("arquivo_servico.txt", "r"); //ABRIR ARQUIVO CLIENTE.
-						while(fscanf(arq_servico,"%s %s %d %d %d",serv.titulo,serv.descricao,&serv.idServ,&serv.idFun,&serv.idCar)!= EOF){ //LACO PARA LER TODAS AS LINHAS DO ARQUIVO
+						while(fscanf(arq_servico,"%s %s %d %d %d",serv.titulo,serv.preco,&serv.idServ,&serv.idFun,&serv.idCar)!= EOF){ //LACO PARA LER TODAS AS LINHAS DO ARQUIVO
                             if(consultaIDSERV == serv.idServ){//CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
-                                printf("\n=== DADOS SERVICO ===\nTITULO: %s\nDESCRICAO: %s\n",serv.titulo,serv.descricao); //PRINT DADOS SERVICO.
+                                printf("\n=== DADOS SERVICO ===\nTITULO: %s\nPRECO: $%s REAIS\n",serv.titulo,serv.preco); //PRINT DADOS SERVICO.
                                 confirmaSeServicoExiste = 1; //SE ENTROU NA CONDICIONAL SIGNIFICA QUE O CLIENTE EXISTE, VAREAVEL RECEBE 1.
                                 auxIDServ = serv.idServ; //GUARDANDO O ID DO CLIENTE CONSULTADO NA VAREAVEL AUXILIAR.
                                 auxIDFun = serv.idFun;
@@ -581,11 +590,9 @@ void menu(){ //INICIO FUNCAO MENU
 						system("pause");
 						system("cls");
 
-                        fprintf(arq_servico,"%s %s %d %d %d\n",serv.titulo,serv.descricao,serv.idServ,serv.idFun,serv.idCar); //GRAVAR DADOS DA VAREAVEL "CLI" CLIENTE NO ARQUIVO CLIENTE
+                        fprintf(arq_servico,"%s %s %d %d %d\n",serv.titulo,serv.preco,serv.idServ,serv.idFun,serv.idCar); //GRAVAR DADOS DA VAREAVEL "CLI" CLIENTE NO ARQUIVO CLIENTE
                         fclose(arq_servico); //FECHAR ARQUIVO CLIENTE
                         printf("Servico Cadastrado com Sucesso\n\n"); //MENSAGEM DE CONCLUSSAO
-                        //int aux; //CRIANDO VAREAVEL AUXILIAR PARA GUARDAR ID DO CLIENTE.
-                        //auxCli = cli.idCli; //GUARDANDO ID DO CLIENTE NA VAREAVEL AUXILIAR.
                         system("pause");
                         system("cls");
                     } // FIM CASE 2 SUBMENU SERVICO/CADASTRO.
@@ -599,14 +606,9 @@ void menu(){ //INICIO FUNCAO MENU
 						Servico serv;
 						FILE *arq_servico;    //PONTEIRO PARA ARQUIVO
 						arq_servico = fopen("arquivo_servico.txt", "r");//ABRIR ARQUIVO
-
-
 						Funcionario fun;
-						//FILE *arq_funcionario;
-						//arq_funcionario = fopen("arquivo_funcionario.txt", "r");
-                        //FILE* aux_file = fopen("arquivo_funcionario.txt", "r");
-						while(fscanf(arq_servico,"%s %s %d %d %d\n",serv.titulo,serv.descricao,&serv.idServ,&serv.idFun,&serv.idCar) != EOF){
-                            printf("TITULO: %s\nDESCRICAO: %s\nID SERVICO: %d\n",serv.titulo,serv.descricao,serv.idServ);
+						while(fscanf(arq_servico,"%s %s %d %d %d\n",serv.titulo,serv.preco,&serv.idServ,&serv.idFun,&serv.idCar) != EOF){
+                            printf("TITULO: %s\nPRECO: $%s REAIS\nID SERVICO: %d\n",serv.titulo,serv.preco,serv.idServ);
                             auxFun = serv.idFun;
                             FILE* aux_file = fopen("arquivo_funcionario.txt", "r");
                             while(fscanf(aux_file,"%s %s %s %d\n",fun.nome,fun.cpf,fun.endereco,&fun.idFun) != EOF){
@@ -616,7 +618,6 @@ void menu(){ //INICIO FUNCAO MENU
                             }
                             fclose(aux_file);
 						}
-                        //fclose(arq_funcionario);
 						fclose(arq_servico);
 						system("pause");
 						system("cls");
@@ -632,12 +633,12 @@ void menu(){ //INICIO FUNCAO MENU
                         scanf ("%d",&excluirIDServ);
                         Servico serv;
                         FILE *temp_serv, *arq_servico; //  ARQUIVO TEMPORARIO
-						if((arq_servico = fopen("arquivo_carro.txt", "rb")) == NULL);
+						if((arq_servico = fopen("arquivo_servico.txt", "rb")) == NULL);
 						if((temp_serv = fopen("temp_servico.txt","wb")) == NULL);
 						// PASSA TODOS OS REGISTROS DO ARQUIVO CLIENTE PARA O ARQUIVO TEMP, EXCETO O REGISTRO COM O ID QUE SERA EXCLUIDO
-                        while(fscanf(arq_servico,"%s %s %d %d %d",serv.titulo,serv.descricao,&serv.idServ,&serv.idFun,&serv.idCar) != EOF){
+                        while(fscanf(arq_servico,"%s %s %d %d %d",serv.titulo,serv.preco,&serv.idServ,&serv.idFun,&serv.idCar) != EOF){
                             if (excluirIDServ != serv.idServ){
-                                fprintf(temp_serv,"%s %s %d %d %d\n",serv.titulo,serv.descricao,serv.idServ,serv.idFun,serv.idCar);//GRAVANDO DADOS NO ARQUIVO TEMPORARIO
+                                fprintf(temp_serv,"%s %s %d %d %d\n",serv.titulo,serv.preco,serv.idServ,serv.idFun,serv.idCar);//GRAVANDO DADOS NO ARQUIVO TEMPORARIO
                             }
                         }
                         fclose(arq_servico);//FECHAR ARQUIVO SERVICO.
@@ -745,20 +746,25 @@ void menu(){ //INICIO FUNCAO MENU
                         printf("|-------------------------------|\n");
                         printf("| DIGITE O ID DO FUNCIONARIO PARA EXCLUIR: ");
                         scanf ("%d",&excluirIDFUN);
+
                         Funcionario fun;
-                        FILE *temp_fun, *arq_funcionario; //  ARQUIVO TEMPORARIO
+                        FILE *temp_funcionario, *arq_funcionario; //  ARQUIVO TEMPORARIO
+
 						if((arq_funcionario = fopen("arquivo_funcionario.txt", "rb")) == NULL);
-						if((temp_fun = fopen("temp_funcionario.txt","wb")) == NULL);
+						if((temp_funcionario = fopen("temp_funcionario.txt","wb")) == NULL);
+
 						// PASSA TODOS OS REGISTROS DO ARQUIVO CLIENTE PARA O ARQUIVO TEMP, EXCETO O REGISTRO COM O ID QUE SERA EXCLUIDO
                         while(fscanf(arq_funcionario,"%s %s %s %d",fun.nome,fun.cpf,fun.endereco,&fun.idFun) != EOF){
                             if (excluirIDFUN != fun.idFun){
-                                fprintf(temp_fun,"%s %s %s %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun);
+                                fprintf(temp_funcionario,"%s %s %s %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun);
                             }
                         }
                         fclose(arq_funcionario);
-                        fclose(temp_fun);
+                        fclose(temp_funcionario);
+
                         remove("arquivo_funcionario.txt"); //EXCLUIR ARQUIVO CLIENTE
                         rename("temp_funcionario.txt", "arquivo_funcionario.txt"); // RENOMEAR ARQUIVO TEMP PARA ARQUIVO CLIENTE
+
                         printf("\nFUNCIONARIO EXCLUIDO!\n");
                         system("pause");
                         system("cls");
