@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
-
+int gIDCli,gIDFun,gIDServ,gIDCar;
  /* ESTRUTURAS */
 typedef struct Cliente{ //ESTRUTURA DO TIPO CLIENTE
     char nome[50];
@@ -251,6 +251,7 @@ void menu(){ //INICIO FUNCAO MENU
                         }
                         Cliente cli; //CRIANDO UMA VAREAVEL "CLI" DO TIPO DA STRUCT, CLIENTE.
                         cli = GetCliente(); //CHAMA FUNCAO PARA LER DADOS DO CLIENTE // RETORNAR DADOS PARA "CLI".
+
                         fprintf(arq_cliente,"%s %s %s %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli); //GRAVAR DADOS DA VAREAVEL "CLI" CLIENTE NO ARQUIVO CLIENTE
                         fclose(arq_cliente); //FECHAR ARQUIVO CLIENTE
                         printf("Cliente Cadastrado com Sucesso\n\n"); //MENSAGEM DE CONCLUSSAO
@@ -427,7 +428,148 @@ void menu(){ //INICIO FUNCAO MENU
 				printf("| Escolha uma opcao: ");
 				scanf("%d",&escolha_servico);
 				system("cls");
+				switch(escolha_servico){ //INICIO SUBMENU SERVICO.
+                    case 1:{// INICIO CASE 1 SUBMENU SERVICO/CONSULTA.
+                        int consultaIDSERV;
+                        printf("|-------------------------------|\n");
+                        printf("|            CONSULTA           |\n");
+                        printf("|-------------------------------|\n");
+                        printf("| Digite o ID do Servico: ");
+                        scanf ("%d",&consultaIDSERV);
+                        int confirmaSeServicoExiste = 0; //SE 0 == CLIENTE NAO EXISTE  |  SE 1 == CLIENTE EXISTE.
+						Servico serv;
+						int auxIDServ,auxIDFun,auxIDCar; // AUXILIAR PARA GUARDA ID DO CLIENTE QUE FOI CONSULTADO.
+						FILE *arq_servico;   //PONTEIRO PARA ARQUIVO.
+						arq_servico = fopen("arquivo_servico.txt", "r"); //ABRIR ARQUIVO CLIENTE.
+						while(fscanf(arq_servico,"%s %s %d %d %d",serv.titulo,serv.descricao,&serv.idServ,&serv.idFun,&serv.idCar)!= EOF){ //LACO PARA LER TODAS AS LINHAS DO ARQUIVO
+                            if(consultaIDSERV == serv.idServ){//CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
+                                printf("\n=== DADOS SERVICO ===\nTITULO: %s\nDESCRICAO: %s\nID DO SERVICO: %d\n",serv.titulo,serv.descricao,serv.idServ); //RETORNA OS DADOS DO CLIENTE DESEJADO
+                                confirmaSeServicoExiste = 1; //SE ENTROU NA CONDICIONAL SIGNIFICA QUE O CLIENTE EXISTE, VAREAVEL RECEBE 1.
+                                auxIDServ = serv.idServ; //GUARDANDO O ID DO CLIENTE CONSULTADO NA VAREAVEL AUXILIAR.
+                                auxIDFun = serv.idFun;
+                                auxIDCar = serv.idCar;
 
+                            } //FIM DA CONDICIONAL
+						}// FIM DO LACO.
+						if(confirmaSeServicoExiste == 0){//SO ENTRA NESSA CONDICAO CASO O CLIENTE NAO EXISTA, VALOR DA VAREAVEL == 0.
+                                printf("\nSERVICO NAO ENCONTRADO\n");// PRINTA MENSAGEM
+                                system("pause");
+                                system("cls");
+                                break;//ENCERRA A CONTINUACAO DO PROGRAMA E VOLTA PARA O MENUR PRINCIPAL.
+                        }
+                        Funcionario fun; //FUNCIONARIO.
+						FILE *arq_funcinaro; // PONTEIRO PARA ARQUIVO CARRO
+						arq_funcinaro = fopen("arquivo_funcionario.txt", "r"); // ABRIR ARQUIVO CARRO
+						if (confirmaSeServicoExiste == 1){//CONDICIONAL PARA PERMITIR CADASTRAR UM CARRO APENAS SE EXISTIR UM CLIENTE DONO DESTE CARRO, PARA NÃO PERMITIR QUE SEJA CADASTRADO UM CARRO SEM UM CLIENTE ASSOCIADO A ELE.
+                            while(fscanf(arq_funcinaro,"%s %s %s %d",fun.nome,fun.cpf,fun.endereco,&fun.idFun)!= EOF){ //LER TODAS AS LINHAS DO ARQUIVO
+                                if(auxIDFun == fun.idFun){//CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO, CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
+                                    printf("\n=== FUNCIONARIO RESPONSAVEL ===\nNOME: %s\nCPF: %s\nENDERECO: %s\nID FUNCIONARIO: %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun); //RETORNA OS DADOS
+                                    //confirmaSeCarroExiste = 1;//SE ENTROU NA CONDICIONAL SIGNIFICA QUE O CARRO EXISTE, VAREAVEL RECEBE 1.
+                                }//FIM DA CONDICIONAL
+                            }//FIM DO LACO
+						}
+						Carro car;
+						FILE *arq_carro;
+						arq_carro;
+
+						fclose(arq_funcinaro); //FECHAR ARQUIVO CLIENTE.
+						fclose(arq_servico);
+						system("pause");
+						system("cls");
+
+
+                    } //FIM CASE 1 SUBMENU SERVICO/CONSULTA.
+                    break;
+
+                    case 2:{ // INICIO CASE 2 SUBMENU SERVICO/CADASTRO.
+                        int consultaID;
+                        printf("|-------------------------------|\n");
+                        printf("|      CADASTRAR SERVICO        |\n");
+                        printf("|-------------------------------|\n");
+                        printf("| Digite o ID do Cliente: ");
+                        scanf ("%d",&consultaID);
+                        int confirmaSeClienteExiste = 0; //SE 0 == CLIENTE NAO EXISTE  |  SE 1 == CLIENTE EXISTE.
+						Cliente cli;
+
+						int auxIDCli; // AUXILIAR PARA GUARDA ID DO CLIENTE QUE FOI CONSULTADO.
+						FILE *arq_cliente;    //PONTEIRO PARA ARQUIVO.
+						arq_cliente = fopen("arquivo_cliente.txt", "r"); //ABRIR ARQUIVO CLIENTE.
+						while(fscanf(arq_cliente,"%s %s %s %d",cli.nome,cli.cpf,cli.endereco,&cli.idCli)!= EOF){ //LACO PARA LER TODAS AS LINHAS DO ARQUIVO
+                            if(consultaID == cli.idCli){//CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
+                                printf("\n=== DADOS CLIENTE ===\nNOME: %s\nCPF: %s\nENDERECO: %s\nID CLIENTE: %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli); //RETORNA OS DADOS DO CLIENTE DESEJADO
+                                confirmaSeClienteExiste = 1; //SE ENTROU NA CONDICIONAL SIGNIFICA QUE O CLIENTE EXISTE, VAREAVEL RECEBE 1.
+                                auxIDCli = cli.idCli; //GUARDANDO O ID DO CLIENTE CONSULTADO NA VAREAVEL AUXILIAR.
+                            } //FIM DA CONDICIONAL
+						}// FIM DO LACO.
+						if(confirmaSeClienteExiste == 0){//SO ENTRA NESSA CONDICAO CASO O CLIENTE NAO EXISTA, VALOR DA VAREAVEL == 0.
+                                printf("\nCLIENTE NAO ENCONTRADO\n");// PRINTA MENSAGEM
+                                system("pause");
+                                system("cls");
+                                break;//ENCERRA A CONTINUACAO DO PROGRAMA E VOLTA PARA O MENUR PRINCIPAL.
+                        }
+                        int confirmaSeCarroExiste = 0;// SE O == CARRO NÃO EXISTE  |  SE 1 == CARRO EXISTE.
+                        int numerosCarros = 1;//VAREAVEL PARA CONTAR O NUMEROS DE CARROS DO CLIENTE, INICIALMENTE RECEBE 1.
+						Carro car;
+						FILE *arq_carro; // PONTEIRO PARA ARQUIVO CARRO
+						arq_carro = fopen("arquivo_carro.txt", "r"); // ABRIR ARQUIVO CARRO
+						if (confirmaSeClienteExiste == 1){//CONDICIONAL PARA PERMITIR CADASTRAR UM CARRO APENAS SE EXISTIR UM CLIENTE DONO DESTE CARRO, PARA NÃO PERMITIR QUE SEJA CADASTRADO UM CARRO SEM UM CLIENTE ASSOCIADO A ELE.
+                            while(fscanf(arq_carro,"%s %s %s %d %d",car.modelo,car.cor,car.placa,&car.idCar,&car.idCli)!= EOF){ //LER TODAS AS LINHAS DO ARQUIVO
+                                if(consultaID == car.idCli){//CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO, CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
+                                    printf("\n=== DADOS DO CARRO %d ===\nMODELO: %s\nCOR: %s\nPLACA: %s\nID CARRO: %d\n",numerosCarros,car.modelo,car.cor,car.placa,car.idCar); //RETORNA OS DADOS
+                                    numerosCarros++;//INCREMENTA NUMEROS DE CARROS CADASTRADOS.
+                                    confirmaSeCarroExiste = 1;//SE ENTROU NA CONDICIONAL SIGNIFICA QUE O CARRO EXISTE, VAREAVEL RECEBE 1.
+                                }//FIM DA CONDICIONAL
+                            }//FIM DO LACO
+                            if(confirmaSeCarroExiste == 0){//SO ENTRA NESSA CONDICAO CASO CARRO NAO EXISTA, VALOR DA VAREAVEL == 0.
+                                printf("\nCLIENTE NAO TEM CARRO CADASTRADO\n");//PRINTA MENSAGEM.
+                                system("pause");
+                                system("cls");
+                                fclose(arq_cliente); //FECHAR ARQUIVO CLIENTE.
+                                fclose(arq_carro);
+                                break;
+                            }
+						}
+						fclose(arq_cliente); //FECHAR ARQUIVO CLIENTE.
+						fclose(arq_carro);  //FECHAR ARQUIVO CARRO.
+						//system("pause");
+						//system("cls");
+                        printf("\nCRIAR SERVICO\n");
+                        FILE *arq_servico;    //PONTEIRO PARA ARQUIVO
+                        arq_servico = fopen("arquivo_servico.txt", "a"); //ABRIR ARQUIVO CLIENTE | "A" SIGNIFICA.......
+                        if(arq_servico ==  NULL){ //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
+                            printf("Erro na abertura do arquivo!"); //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
+                        }
+                        Servico serv; //CRIANDO UMA VAREAVEL "CLI" DO TIPO DA STRUCT, CLIENTE.
+                        serv = GetServico(); //CHAMA FUNCAO PARA LER DADOS DO CLIENTE // RETORNAR DADOS PARA "CLI".
+                        printf("INFORME ID DO CARRO DESEJADO: ");
+                        scanf("%d",&serv.idCar);
+                        system("cls");
+
+                        printf("|-------------------------------|\n");
+                        printf("|     ESCOLHA FUNCIONARIO       |\n");
+                        printf("|-------------------------------|\n");
+						Funcionario fun;
+						FILE *arq_funcionario;    //PONTEIRO PARA ARQUIVO
+						arq_funcionario = fopen("arquivo_funcionario.txt", "r");
+						while(fscanf(arq_funcionario,"%s %s %s %d",fun.nome,fun.cpf,fun.endereco,&fun.idFun)!= EOF){
+                            printf("NOME: %s\nCPF: %s\nENDERECO: %s\nID FUNCIONARIO: %d\n=================================\n",fun.nome,fun.cpf,fun.endereco,fun.idFun);
+						}
+						fclose(arq_funcionario);
+						printf("INFORME ID DO FUNCIONARIO PARA O SERVICO: ");
+						scanf("%d",&serv.idFun);
+						system("pause");
+						system("cls");
+
+                        fprintf(arq_servico,"%s %s %d %d %d\n",serv.titulo,serv.descricao,serv.idServ,serv.idFun,serv.idCar); //GRAVAR DADOS DA VAREAVEL "CLI" CLIENTE NO ARQUIVO CLIENTE
+                        fclose(arq_servico); //FECHAR ARQUIVO CLIENTE
+                        printf("Servico Cadastrado com Sucesso\n\n"); //MENSAGEM DE CONCLUSSAO
+                        //int aux; //CRIANDO VAREAVEL AUXILIAR PARA GUARDAR ID DO CLIENTE.
+                        //auxCli = cli.idCli; //GUARDANDO ID DO CLIENTE NA VAREAVEL AUXILIAR.
+                        system("pause");
+                        system("cls");
+                    } // FIM CASE 2 SUBMENU SERVICO/CADASTRO.
+                    break;
+				}
 
             }//FIM CASE 2 MENU/SERVICO
             break;
@@ -535,7 +677,7 @@ void menu(){ //INICIO FUNCAO MENU
                     } //FIM CASE 3 SUBMENU FUNCIONARIO/LISTAR FINCIONARIO.
                     break;
                     case 4:{// INICIO CASE 4 SUBMENU FUNCIONARIO/EXCLUIR FUNCIONARIO.
-                        int excluirIDCAR;
+                        int excluirIDFUN;
                         printf("|-------------------------------|\n");
                         printf("|      EXCLUIR FUNCINARIO       |\n");
                         printf("|-------------------------------|\n");
