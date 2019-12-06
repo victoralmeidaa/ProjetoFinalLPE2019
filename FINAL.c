@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
-int gIDCli,gIDFun,gIDServ,gIDCar;
+
  /* ESTRUTURAS */
 typedef struct Cliente{ //ESTRUTURA DO TIPO CLIENTE
     char nome[50];
@@ -44,9 +44,30 @@ Cliente GetCliente(){ //FUNCAO DO TIPO CLIENTE PARA LER DADOS DO CLIENTES
     printf("NOME: ");
     setbuf(stdin,NULL);
     gets(&cli.nome);
-    printf("CPF: ");
-    setbuf(stdin,NULL);
-    gets(&cli.cpf);
+
+    //LER CPF ======================================
+    int len;
+	int i,cond;
+	do{
+        cond=0;
+		printf("DIGITE CPF COM 11 DIGITOS: ");
+		setbuf(stdin,NULL);
+		gets(&cli.cpf);
+		len = strlen(cli.cpf);
+		if (len == 11){
+            for(i=0; i<len; i++){
+                if(!isdigit(cli.cpf[i])){
+                    cond = 1;
+                }
+            }
+		}else{
+            printf("\nQUANTIDADE DE NUMEROS INVALIDA!\n");
+		}
+        if(cond == 1){
+            printf("\nINVALIDO, DIGITE APENAS NUMEROS\n");
+        }
+	}while(len != 11  || cond != 0);
+
     printf("ENDERECO: ");
     setbuf(stdin,NULL);
     gets(&cli.endereco);
@@ -157,7 +178,7 @@ void menu(){ //INICIO FUNCAO MENU
 						Carro car;
 						int auxIDCli; // AUXILIAR PARA GUARDA ID DO CLIENTE QUE FOI CONSULTADO.
 						FILE *arq_cliente;    //PONTEIRO PARA ARQUIVO.
-						arq_cliente = fopen("arquivo_cliente.txt", "r"); //ABRIR ARQUIVO CLIENTE.
+						arq_cliente = fopen("arquivo_cliente.txt", "r"); //ABRIR ARQUIVO CLIENTE. "R" ABRE O ARQUIVO PARA LEITURA.
 						while(fscanf(arq_cliente,"%s %s %s %d",cli.nome,cli.cpf,cli.endereco,&cli.idCli)!= EOF){ //LACO PARA LER TODAS AS LINHAS DO ARQUIVO
                             if(consultaID == cli.idCli){//CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
                                 printf("\n=== DADOS CLIENTE ===\nNOME: %s\nCPF: %s\nENDERECO: %s\nID CLIENTE: %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli); //RETORNA OS DADOS DO CLIENTE DESEJADO
@@ -174,7 +195,7 @@ void menu(){ //INICIO FUNCAO MENU
                         int confirmaSeCarroExiste = 0;// SE O == CARRO NÃO EXISTE  |  SE 1 == CARRO EXISTE.
                         int numerosCarros = 1;//VAREAVEL PARA CONTAR O NUMEROS DE CARROS DO CLIENTE, INICIALMENTE RECEBE 1.
 						FILE *arq_carro; // PONTEIRO PARA ARQUIVO CARRO
-						arq_carro = fopen("arquivo_carro.txt", "r"); // ABRIR ARQUIVO CARRO
+						arq_carro = fopen("arquivo_carro.txt", "r"); // ABRIR ARQUIVO CARRO. "R" ABRE O ARQUIVO PARA LEITURA
 						if (confirmaSeClienteExiste == 1){//CONDICIONAL PARA PERMITIR CADASTRAR UM CARRO APENAS SE EXISTIR UM CLIENTE DONO DESTE CARRO, PARA NÃO PERMITIR QUE SEJA CADASTRADO UM CARRO SEM UM CLIENTE ASSOCIADO A ELE.
                             while(fscanf(arq_carro,"%s %s %s %d %d",car.modelo,car.cor,car.placa,&car.idCar,&car.idCli)!= EOF){ //LER TODAS AS LINHAS DO ARQUIVO
                                 if(consultaID == car.idCli){//CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO, CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
@@ -217,7 +238,7 @@ void menu(){ //INICIO FUNCAO MENU
                                     printf("|        CADASTRAR CARRO        |\n");
                                     printf("|-------------------------------|\n");
                                     FILE *arq_carro;
-                                    arq_carro = fopen("arquivo_carro.txt", "a"); //ABRIR ARQUIVO CARRO.
+                                    arq_carro = fopen("arquivo_carro.txt", "a"); //ABRIR ARQUIVO CARRO. "A" ABRE O ARQUIVO PARA GRAVAÇÃO
                                     if(arq_carro ==  NULL){ //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CARRO.
                                         printf("ERRO NA ABERTURA DO ARQUIVO!"); //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO.
                                     }
@@ -245,7 +266,7 @@ void menu(){ //INICIO FUNCAO MENU
                         printf("|  2  |       CADASTRAR         |\n");
                         printf("|-------------------------------|\n");
                         FILE *arq_cliente;    //PONTEIRO PARA ARQUIVO
-                        arq_cliente = fopen("arquivo_cliente.txt", "a"); //ABRIR ARQUIVO CLIENTE | "A" SIGNIFICA.......
+                        arq_cliente = fopen("arquivo_cliente.txt", "a"); //ABRIR ARQUIVO CLIENTE | "A" ABRE O ARQUIVO PARA GRAVAÇÃO.
                         if(arq_cliente ==  NULL){ //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
                             printf("Erro na abertura do arquivo!"); //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
                         }
@@ -286,7 +307,7 @@ void menu(){ //INICIO FUNCAO MENU
                                     printf("|        CADASTRAR CARRO        |\n");
                                     printf("|-------------------------------|\n");
                                     FILE *arq_carro;
-                                    arq_carro = fopen("arquivo_carro.txt", "a"); //ABRIR ARQUIVO CARRO
+                                    arq_carro = fopen("arquivo_carro.txt", "a"); //ABRIR ARQUIVO CARRO. "A" ABRE O ARQUIVO PARA GRAVAÇÃO.
                                     if(arq_carro ==  NULL){ //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CARRO
                                         printf("ERRO NA ABERTURA DO ARQUIVO!"); //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
                                         return 1;
@@ -328,7 +349,7 @@ void menu(){ //INICIO FUNCAO MENU
                         printf("|-------------------------------|\n");
 						Carro car;
 						FILE *arq_carro;    //PONTEIRO PARA ARQUIVO
-						arq_carro = fopen("arquivo_carro.txt", "r");
+						arq_carro = fopen("arquivo_carro.txt", "r");// "R" ABRE O ARQUIVO PARA LEITURA.
 						while(fscanf(arq_carro,"%s %s %s %d %d",car.modelo,car.cor,car.placa,&car.idCar,&car.idCli)!= EOF){
                             printf("MODELO: %s\nCOR: %s\nPLACA: %s\nID CARRO: %d\n=================================\n",car.modelo,car.cor,car.placa,car.idCar);
 						}
@@ -346,13 +367,13 @@ void menu(){ //INICIO FUNCAO MENU
                         scanf ("%d",&excluirID);
                         Cliente cli;
                         FILE *temp_cliente, *arq_cliente; //  ARQUIVO TEMPORARIO
-						if((arq_cliente = fopen("arquivo_cliente.txt", "rb")) == NULL);
-						if((temp_cliente = fopen("temp_cliente.txt","wb")) == NULL);
+						if((arq_cliente = fopen("arquivo_cliente.txt", "rb")) == NULL); // "RB" ABRE O ARQUVICO PARA LEITURA EM BINARIO.
+						if((temp_cliente = fopen("temp_cliente.txt","wb")) == NULL);// "WB" ABRE O ARQUIVO PARA GRAVAÇAO EM BINARIO.
 
                         Carro car;
                         FILE *temp_carro, *arq_carro;
-                        if((arq_carro = fopen("arquivo_carro.txt","rb")) == NULL);
-                        if((temp_carro = fopen("temp_carro.txt","wb")) == NULL);
+                        if((arq_carro = fopen("arquivo_carro.txt","rb")) == NULL);// "RB" ABRE O ARQUVICO PARA LEITURA EM BINARIO.
+                        if((temp_carro = fopen("temp_carro.txt","wb")) == NULL);// "WB" ABRE O ARQUIVO PARA GRAVAÇAO EM BINARIO.
 
 						// PASSA TODOS OS REGISTROS DOS ARQUIVOS PARA OS ARQUIVOS TEMPORARIOS, EXCETO O REGISTRO COM O ID QUE SERA EXCLUIDO
                         while(fscanf(arq_cliente,"%s %s %s %d",cli.nome,cli.cpf,cli.endereco,&cli.idCli) != EOF){ //LISTANDO ARQUIVO_CLIENTE
@@ -603,14 +624,18 @@ void menu(){ //INICIO FUNCAO MENU
                         printf("|         LISTAR SERVICO        |\n");
                         printf("|-------------------------------|\n");
 						int auxFun;
+
 						Servico serv;
 						FILE *arq_servico;    //PONTEIRO PARA ARQUIVO
 						arq_servico = fopen("arquivo_servico.txt", "r");//ABRIR ARQUIVO
+
 						Funcionario fun;
 						while(fscanf(arq_servico,"%s %s %d %d %d\n",serv.titulo,serv.preco,&serv.idServ,&serv.idFun,&serv.idCar) != EOF){
                             printf("TITULO: %s\nPRECO: $%s REAIS\nID SERVICO: %d\n",serv.titulo,serv.preco,serv.idServ);
                             auxFun = serv.idFun;
-                            FILE* aux_file = fopen("arquivo_funcionario.txt", "r");
+
+                            FILE *aux_file;
+                            aux_file = fopen("arquivo_funcionario.txt", "r");
                             while(fscanf(aux_file,"%s %s %s %d\n",fun.nome,fun.cpf,fun.endereco,&fun.idFun) != EOF){
                                 if(auxFun == fun.idFun){
                                     printf("FUNCIONARIO: %s\n=================================\n",fun.nome);
@@ -632,6 +657,7 @@ void menu(){ //INICIO FUNCAO MENU
                         printf("| DIGITE O ID DO SERVICO PARA EXCLUIR: ");
                         scanf ("%d",&excluirIDServ);
                         Servico serv;
+
                         FILE *temp_serv, *arq_servico; //  ARQUIVO TEMPORARIO
 						if((arq_servico = fopen("arquivo_servico.txt", "rb")) == NULL);
 						if((temp_serv = fopen("temp_servico.txt","wb")) == NULL);
@@ -682,6 +708,7 @@ void menu(){ //INICIO FUNCAO MENU
                         printf("| Digite o ID do Funcionario: ");
                         scanf ("%d",&consultaIDFUN);
                         int confirmaSeFuncionarioExiste = 0; //SE 0 == CLIENTE NAO EXISTE  |  SE 1 == CLIENTE EXISTE.
+
 						Funcionario fun;
 						Servico serv;
 						int auxIDFun; // AUXILIAR PARA GUARDA ID DO CLIENTE QUE FOI CONSULTADO.
@@ -745,7 +772,7 @@ void menu(){ //INICIO FUNCAO MENU
                         printf("|      EXCLUIR FUNCINARIO       |\n");
                         printf("|-------------------------------|\n");
                         printf("| DIGITE O ID DO FUNCIONARIO PARA EXCLUIR: ");
-                        scanf ("%d",&excluirIDFUN);
+                        scanf("%d",&excluirIDFUN);
 
                         Funcionario fun;
                         FILE *temp_funcionario, *arq_funcionario; //  ARQUIVO TEMPORARIO
