@@ -4,7 +4,7 @@
 
 <!--ts-->
    * [Criar](#Criar)
-      - [x] [Cadastro cliente](#Cadastro-cliente)
+      - [x] [Cadastro cliente](#Cliente)
       - ↳ Cadastrar carro
       : Logo após cadastrar o cliente o sistema pede para que seja cadastrado o veículo associado a este cliente.
   
@@ -59,8 +59,20 @@
 
 
 # Criar
-Cadastro cliente
+Cliente
 ===========
+- ESTRUTURA CLIENTE
+```bash
+typedef struct Cliente{                 	    //ESTRUTURA DO TIPO CLIENTE
+    char nome[50];				    //NOME
+    char cpf[10];				    //CPF
+    char endereco[50];                              //ENDERECO
+    int idCli;                                      //ID CLIENTE
+}
+Cliente;
+
+```
+
 - FUNÇÃO LER DADOS CLIENTE
 ```bash
 Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PARA LER DADOS DO CLIENTES
@@ -97,6 +109,7 @@ gets(&cli.endereco); 				    //LER ENDERECO DO CLIENTE
 printf("ID: ");					    
 scanf("%d",&cli.idCli);				    //LER ID DO CLIENTE
 return cli;                                         //FUNCAO RETORNA ESTRUTURA DO TIPO CLIENTE.
+}
 ```
 
 
