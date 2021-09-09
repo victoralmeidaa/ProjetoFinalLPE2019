@@ -4,7 +4,7 @@
 
 <!--ts-->
    * [Criar](#Criar)
-      - [x] [Cadastro de cliente](#Cadastro-cliente)
+      - [x] [Cadastro cliente](#Cadastro-cliente)
       - ↳ Cadastrar carro
       : Logo após cadastrar o cliente o sistema pede para que seja cadastrado o veículo associado a este cliente.
   
@@ -59,7 +59,7 @@
 
 
 # Criar
-Cadastro de cliente
+Cadastro cliente
 
 
 ```bash
