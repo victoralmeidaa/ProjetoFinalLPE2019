@@ -60,7 +60,7 @@
 
 # Criar
 Cadastro cliente
-
+===========
 
 ```bash
 FILE *arq_cliente;                                //PONTEIRO PARA ARQUIVO
