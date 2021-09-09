@@ -4,7 +4,7 @@
 
 <!--ts-->
    * [Criar](#Criar)
-      - [x] [Cadastro de cliente](#cliente)
+      - [x] [Cadastro de cliente](#Cadastro-de-cliente)
       - ↳ Cadastrar carro
       : Logo após cadastrar o cliente o sistema pede para que seja cadastrado o veículo associado a este cliente.
   
@@ -69,10 +69,10 @@ if(arq_cliente ==  NULL){                         //VERIFICAR SE OUVE ERRO AO AB
     printf("Erro na abertura do arquivo!");       //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
 }
 Cliente cli;                                      //CRIANDO UMA VAREAVEL "CLI" DO TIPO DA STRUCT, CLIENTE.
-cli = GetCliente(); //CHAMA FUNCAO PARA LER DADOS DO CLIENTE // RETORNAR DADOS PARA "CLI".
+cli = GetCliente();                               //CHAMA FUNCAO PARA LER DADOS DO CLIENTE // RETORNAR DADOS PARA "CLI".
 
 fprintf(arq_cliente,"%s %s %s %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli); //GRAVAR DADOS DA VAREAVEL "CLI" CLIENTE NO ARQUIVO CLIENTE
-fclose(arq_cliente); //FECHAR ARQUIVO CLIENTE
+fclose(arq_cliente);                              //FECHAR ARQUIVO CLIENTE
 printf("Cliente Cadastrado com Sucesso\n\n");     //MENSAGEM DE CONCLUSSAO
 int auxCli;                                       //CRIANDO VAREAVEL AUXILIAR PARA GUARDAR ID DO CLIENTE.
 auxCli = cli.idCli;                               //GUARDANDO ID DO CLIENTE NA VAREAVEL AUXILIAR.
