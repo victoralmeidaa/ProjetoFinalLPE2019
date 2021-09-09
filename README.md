@@ -61,7 +61,48 @@
 # Criar
 Cadastro cliente
 ===========
+- FUNÇÃO LER DADOS CLIENTE
+```bash
+Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PARA LER DADOS DO CLIENTES
+Cliente cli;                                        //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO CLIENTE.
+printf("NOME: ");
+setbuf(stdin,NULL);
+gets(&cli.nome);
 
+//LER CPF ======================================
+int len;
+int i,cond;
+do{
+    cond=0;
+  printf("DIGITE CPF COM 11 DIGITOS: ");
+  setbuf(stdin,NULL);
+  gets(&cli.cpf);
+	len = strlen(cli.cpf);
+	if (len == 11){
+     for(i=0; i<len; i++){
+        if(!isdigit(cli.cpf[i])){
+            cond = 1;
+         }
+     }
+	}else{
+       printf("\nQUANTIDADE DE NUMEROS INVALIDA!\n");
+	}
+     if(cond == 1){
+         printf("\nINVALIDO, DIGITE APENAS NUMEROS\n");
+     }
+	}while(len != 11  || cond != 0);
+
+printf("ENDERECO: ");
+setbuf(stdin,NULL);
+gets(&cli.endereco);
+printf("ID: ");
+scanf("%d",&cli.idCli);
+return cli;                                        //FUNCAO RETORNA ESTRUTURA DO TIPO CLIENTE.
+```
+
+
+
+- APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO.TXT
 ```bash
 FILE *arq_cliente;                                //PONTEIRO PARA ARQUIVO
 arq_cliente = fopen("arquivo_cliente.txt", "a");  //ABRIR ARQUIVO CLIENTE | "A" ABRE O ARQUIVO PARA GRAVAÇÃO.
@@ -78,4 +119,25 @@ int auxCli;                                       //CRIANDO VAREAVEL AUXILIAR PA
 auxCli = cli.idCli;                               //GUARDANDO ID DO CLIENTE NA VAREAVEL AUXILIAR.
 system("pause");
 system("cls");
+```
+
+
+Cadastrar carro
+===========
+```bash
+FILE *arq_carro;
+arq_carro = fopen("arquivo_carro.txt", "a");      //ABRIR ARQUIVO CARRO. "A" ABRE O ARQUIVO PARA GRAVAÇÃO.
+if(arq_carro ==  NULL){                           //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CARRO
+    printf("ERRO NA ABERTURA DO ARQUIVO!");       //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
+    return 1;
+}
+Cliente cli;                                      
+Carro car;                                        //CRIANDO UMA VAREAVEL "CAR" DO TIPO STRUCT, CARRO.
+car = GetCarro();                                 //CHAMA FUNCAO PARA LER DADOS DO CARRO // RETORNAR DADOS PARA "CAR"
+car.idCli = auxCli;                               //COPIANDO VAREAVEL AUXILIAR COM O ID DO CLIENTE PARA ID DO CARRO
+fprintf(arq_carro,"%s %s %s %d %d\n",car.modelo,car.cor,car.placa,car.idCar,car.idCli); //GRAVAR DADOS DO "CAR" CARRO NO ARQUIVO CARRO
+fclose(arq_carro);                                //FECHAR ARQUIVO CARRO
+printf("Carro Cadastrado com Sucesso\n");         //MENSAGEM DE CONCLUSSAO
+system("pause");
+system("cls");;
 ```
