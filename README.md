@@ -67,37 +67,36 @@ Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PAR
 Cliente cli;                                        //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO CLIENTE.
 printf("NOME: ");
 setbuf(stdin,NULL);
-gets(&cli.nome);
+gets(&cli.nome);				    //LER NOME CLIENTE.
 
-//LER CPF ======================================
-int len;
-int i,cond;
+int len;					    //VAREAVEL DE TIPO INT, SERVE PARA GUARDA A QUANTIDADE DE CARACTERES DIGITADO EM LER CPF
+int i,cond;					    
 do{
-    cond=0;
-  printf("DIGITE CPF COM 11 DIGITOS: ");
+  cond=0;
+  printf("DIGITE CPF COM 11 DIGITOS: ");            
   setbuf(stdin,NULL);
-  gets(&cli.cpf);
-	len = strlen(cli.cpf);
-	if (len == 11){
-     for(i=0; i<len; i++){
-        if(!isdigit(cli.cpf[i])){
-            cond = 1;
-         }
-     }
+  gets(&cli.cpf);				    //LER CPF CLIENTE
+	len = strlen(cli.cpf);			    //GUARDA A QUANTIDADE DE CARACTERES INFORMADOS EM "CLI.CPF"
+	if (len == 11){				    
+     	   for(i=0; i<len; i++){                    //LAÇO PARA LER TODOS OS 11 CARACTERES DE "CLI.CPF"
+              if(!isdigit(cli.cpf[i])){		    //FUNCAO "ISDIGIT()" VERIFICA SE O VALOR PASSADO E UM INT OU STRING
+                 cond = 1;
+              }
+           }
 	}else{
-       printf("\nQUANTIDADE DE NUMEROS INVALIDA!\n");
+            printf("\nQUANTIDADE DE NUMEROS INVALIDA!\n");
 	}
-     if(cond == 1){
-         printf("\nINVALIDO, DIGITE APENAS NUMEROS\n");
-     }
-	}while(len != 11  || cond != 0);
+        if(cond == 1){
+            printf("\nINVALIDO, DIGITE APENAS NUMEROS\n");
+        }
+}while(len != 11  || cond != 0);
 
-printf("ENDERECO: ");
-setbuf(stdin,NULL);
-gets(&cli.endereco);
-printf("ID: ");
-scanf("%d",&cli.idCli);
-return cli;                                        //FUNCAO RETORNA ESTRUTURA DO TIPO CLIENTE.
+printf("ENDERECO: ");				    
+setbuf(stdin,NULL);    				    
+gets(&cli.endereco); 				    //LER ENDERECO DO CLIENTE
+printf("ID: ");					    
+scanf("%d",&cli.idCli);				    //LER ID DO CLIENTE
+return cli;                                         //FUNCAO RETORNA ESTRUTURA DO TIPO CLIENTE.
 ```
 
 
