@@ -51,7 +51,7 @@
 ##
 
 
-# Criar
+# CRIAR
 Cliente
 ===========
 - ESTRUTURA CLIENTE
@@ -205,7 +205,7 @@ Serviço
 ```bash
 ```
 
-# Consultar
+# CONSULTAR
 Consultar cliente
 ============
 ```bash
@@ -216,5 +216,33 @@ Consultar funcionario
 ```
 Consultar serviço
 ===========
+```bash
+```
+
+# LISTAR
+Listar cliente
+===========
+```bash
+```
+Listar funcionario
+===========
+```bash
+```
+Listar serviço
+===========
+```bash
+```
+
+# EXCLUIR
+Excluir cliente
+===========
+```bash
+```
+Excluir funcionario
+===========
+```bash
+```
+Excluir serviço
+==========
 ```bash
 ```
