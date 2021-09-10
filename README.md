@@ -213,6 +213,39 @@ Funcionario Getfuncionario(){                       //FUNCAO DO TIPO FUNCIONARIO
 ```
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
+
+```
+
+Serviço
+===========
+- ESTRUTURA SERVIÇO
+```bash
+typedef struct Servico{                              //ESTRUTURA DO TIPO SERVICO
+    char titulo[20];                                 //TITULO
+    char preco[50];                                  //PREÇO
+    int idServ;                                      //ID SERVIÇO
+    int idFun;                                       //ID FUNCIONARIO
+    int idCar;                                       //ID CARRO
+}
+Servico;
+```
+- FUNÇÃO LER DADOS
+```bash 
+Servico GetServico(){                                //FUNCAO PARA LER DADOS DE CARROS
+    Servico serv;                                    //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO SERVICO.
+    printf("TITULO: ");
+    setbuf(stdin,NULL);
+    gets(&serv.titulo);                              //LER TITULO SERVIÇO
+    printf("PRECO: ");
+    setbuf(stdin,NULL);
+    gets(&serv.preco);                               //LER PREÇO
+    printf("ID SERVICO: ");
+    scanf("%d",&serv.idServ);                        //LER ID SERVIÇO
+    return serv;                                     //FUNCAO RETORNA ESTRUTURA DO TIPO SERVICO.
+}
+```
+- APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
+```bash
 printf("| Digite o ID do Cliente: ");
 scanf ("%d",&consultaID);
 int confirmaSeClienteExiste = 0;                    //SE 0 == CLIENTE NAO EXISTE  |  SE 1 == CLIENTE EXISTE.
@@ -293,38 +326,6 @@ printf("Servico Cadastrado com Sucesso\n\n");        //MENSAGEM DE CONCLUSSAO
 system("pause");
 system("cls");
 
-```
-
-Serviço
-===========
-- ESTRUTURA SERVIÇO
-```bash
-typedef struct Servico{                              //ESTRUTURA DO TIPO SERVICO
-    char titulo[20];                                 //TITULO
-    char preco[50];                                  //PREÇO
-    int idServ;                                      //ID SERVIÇO
-    int idFun;                                       //ID FUNCIONARIO
-    int idCar;                                       //ID CARRO
-}
-Servico;
-```
-- FUNÇÃO LER DADOS
-```bash 
-Servico GetServico(){                                //FUNCAO PARA LER DADOS DE CARROS
-    Servico serv;                                    //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO SERVICO.
-    printf("TITULO: ");
-    setbuf(stdin,NULL);
-    gets(&serv.titulo);                              //LER TITULO SERVIÇO
-    printf("PRECO: ");
-    setbuf(stdin,NULL);
-    gets(&serv.preco);                               //LER PREÇO
-    printf("ID SERVICO: ");
-    scanf("%d",&serv.idServ);                        //LER ID SERVIÇO
-    return serv;                                     //FUNCAO RETORNA ESTRUTURA DO TIPO SERVICO.
-}
-```
-- APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
-```bash
 ```
 
 # CONSULTAR
