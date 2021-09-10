@@ -204,3 +204,17 @@ Serviço
 - APLICAÇÃO
 ```bash
 ```
+
+# Consultar
+Consultar cliente
+============
+```bash
+```
+Consultar funcionario
+===========
+```bash
+```
+Consultar serviço
+===========
+```bash
+```
