@@ -181,3 +181,26 @@ system("pause");
 system("cls");;
 ```
 
+Funcionario
+===========
+- ESTRUTURA
+```bash
+```
+- FUNÇÃO
+```bash
+```
+- APLICAÇÃO
+```bash
+```
+
+Serviço
+===========
+- ESTRUTURA
+```bash
+```
+- FUNÇÃO
+```bash
+```
+- APLICAÇÃO
+```bash
+```
