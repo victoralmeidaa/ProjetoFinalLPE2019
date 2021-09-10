@@ -7,13 +7,14 @@
       - [x] [Cliente](#Cliente)
       - Estrutura de dados do cliente.
       - Função para ler dados do cliente.
-      - Gravar dados do cliente no arquivo txt.
-      ↳
+      - Gravar dados do cliente no arquivo txt. 
+      - ↳ : Logo após cadastrar o cliente o sistema pede para que seja cadastrado o veículo associado a este cliente.
       
       - [x] [Carro](#Carro)
-      - Estrutura de dados de carro
-      - Cadastrar carro
-      : Logo após cadastrar o cliente o sistema pede para que seja cadastrado o veículo associado a este cliente.
+      - Estrutura de dados de carro.
+      - Função para ler dados do carro.
+      - Gravar dados do carro no aruivo txt.
+     
   
       - [x] [Cadastro de Funcionario](#funcionario)
       - ↳ 
@@ -162,16 +163,16 @@ Carro;
 Carro GetCarro(){ 				    //FUNCAO DO TIPO CARRO PARA LER DADOS DE CARROS.
     Carro car;					    //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO CARRO.
     printf("MODELO: ");
-    setbuf(stdin,NULL);
-    gets(&car.modelo);
+    setbuf(stdin,NULL);                             
+    gets(&car.modelo);                              //LER MODELO CARRO
     printf("COR: ");
     setbuf(stdin,NULL);
-    gets(&car.cor);
+    gets(&car.cor);                                 //LER COR CARRO
     printf("PLACA: ");
     setbuf(stdin,NULL);
-    gets(&car.placa);
+    gets(&car.placa);                               //LER PLACA CARRO
     printf("ID CARRO:");
-    scanf("%d",&car.idCar);
+    scanf("%d",&car.idCar);                         //LER ID CARRO
     return car;                                     //FUNCAO RETORNA ESTRUTURA DO TIPO CARRO.
 }
 ```
@@ -194,3 +195,4 @@ printf("Carro Cadastrado com Sucesso\n");           //MENSAGEM DE CONCLUSSAO
 system("pause");
 system("cls");;
 ```
+
