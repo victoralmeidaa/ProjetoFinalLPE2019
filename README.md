@@ -162,7 +162,7 @@ Carro GetCarro(){ 				    //FUNCAO DO TIPO CARRO PARA LER DADOS DE CARROS.
 }
 ```
 
-- APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO.TXT
+- APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
 FILE *arq_carro;
 arq_carro = fopen("arquivo_carro.txt", "a");        //ABRIR ARQUIVO CARRO. "A" ABRE O ARQUIVO PARA GRAVAÇÃO.
@@ -183,25 +183,41 @@ system("cls");;
 
 Funcionario
 ===========
-- ESTRUTURA
+- ESTRUTURA FUNCIONARIO
 ```bash
+typedef struct Funcionario{                         //ESTRUTURA DO TIPO FUNCINARIO
+    char nome[20];                                  //NOME
+    char cpf[10];                                   //CPF
+    char endereco[50];                              //ENDEREÇO
+    int idFun;                                      //ID FUNCIONARIO
+}
+Funcionario;
 ```
-- FUNÇÃO
+- FUNÇÃO LER DADOS
 ```bash
+
 ```
-- APLICAÇÃO
+- APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
 ```
 
 Serviço
 ===========
-- ESTRUTURA
+- ESTRUTURA SERVIÇO
+```bash
+typedef struct Servico{                             //ESTRUTURA DO TIPO SERVICO
+    char titulo[20];                                //TITULO
+    char preco[50];                                 //PREÇO
+    int idServ;                                     //ID SERVIÇO
+    int idFun;                                      //ID FUNCIONARIO
+    int idCar;                                      //ID CARRO
+}
+Servico;
+```
+- FUNÇÃO LER DADOS
 ```bash
 ```
-- FUNÇÃO
-```bash
-```
-- APLICAÇÃO
+- APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
 ```
 
