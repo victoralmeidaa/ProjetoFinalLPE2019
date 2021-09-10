@@ -8,7 +8,7 @@
       - Estrutura de dados do cliente.
       - Função para ler dados do cliente.
       - Gravar dados do cliente no arquivo txt. 
-      - ↳ : Logo após cadastrar o cliente o sistema pede para que seja cadastrado o veículo associado a este cliente.
+        - ↳ : Logo após cadastrar o cliente o sistema pede para que seja cadastrado o veículo associado a este cliente.
       
       - [x] [Carro](#Carro)
       - Estrutura de dados de carro.
