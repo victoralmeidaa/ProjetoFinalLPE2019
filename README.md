@@ -143,7 +143,7 @@ system("cls");
 ```
 
 
-Cadastrar Carro
+Carro
 ===========
 - ESTRUTURA CARRO
 ```bash
