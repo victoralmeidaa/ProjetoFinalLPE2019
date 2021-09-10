@@ -97,7 +97,6 @@ Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PAR
           }
      }while(len != 11  || cond != 0);               //FIM "DO WHILE"
 
-
      printf("ENDERECO: ");				    
      setbuf(stdin,NULL);    				    
      gets(&cli.endereco); 			    //LER ENDERECO DO CLIENTE
