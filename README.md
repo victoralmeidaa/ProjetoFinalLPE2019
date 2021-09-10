@@ -1,5 +1,5 @@
-# Projeto Final - Linguagem de Programação Estruturada 2019.2
-## Sistema de Genstão Lavajato
+# Sistema de Genstão Lavajato em C
+## Projeto Final - Linguagem de Programação Estruturada 2019.2
 ### Funções 
 
 <!--ts-->
