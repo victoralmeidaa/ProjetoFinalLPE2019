@@ -195,7 +195,21 @@ Funcionario;
 ```
 - FUNÇÃO LER DADOS
 ```bash
-
+Funcionario Getfuncionario(){                       //FUNCAO DO TIPO FUNCIONARIO PARA LER DADOS DE CARROS
+    Funcionario fun;                                //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO FUNCIONARIO.
+    printf("NOME: ");
+    setbuf(stdin,NULL);
+    gets(&fun.nome);                                //LER NOME FUNCIONARIO
+    printf("CPF: ");
+    setbuf(stdin,NULL);       
+    gets(&fun.cpf);                                 //LER CPF FUNCIONARIO
+    printf("ENDERECO: ");
+    setbuf(stdin,NULL);
+    gets(&fun.endereco);                            //LER ENDEREÇO FUNCIONARIO
+    printf("ID: ");
+    scanf("%d",&fun.idFun);                         //LER ID FUNCIONARIO
+    return fun;                                     //FUNCAO RETORNA ESTRUTURA DO TIPO FUNCIONARIO.
+}
 ```
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
@@ -216,6 +230,18 @@ Servico;
 ```
 - FUNÇÃO LER DADOS
 ```bash
+Servico GetServico(){                               //FUNCAO PARA LER DADOS DE CARROS
+    Servico serv;                                   //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO SERVICO.
+    printf("TITULO: ");
+    setbuf(stdin,NULL);
+    gets(&serv.titulo);                             //LER TITULO SERVIÇO
+    printf("PRECO: ");
+    setbuf(stdin,NULL);
+    gets(&serv.preco);                              //LER PREÇO
+    printf("ID SERVICO: ");
+    scanf("%d",&serv.idServ);                       //LER ID SERVIÇO
+    return serv;                                    //FUNCAO RETORNA ESTRUTURA DO TIPO SERVICO.
+}
 ```
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
