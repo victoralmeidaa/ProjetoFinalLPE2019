@@ -89,8 +89,9 @@ Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PAR
      gets(&cli.nome);				    //LER NOME CLIENTE.
 
      int len;					    //VAREAVEL DE TIPO INT, SERVE PARA GUARDA A QUANTIDADE DE CARACTERES DIGITADO EM LER CPF
-     int i,cond;					    
-do{
+     int i,cond;
+     
+  do{                                                 //INICIO "DO WHILE"
   cond=0;
   printf("DIGITE CPF COM 11 DIGITOS: ");            
   setbuf(stdin,NULL);
@@ -108,7 +109,8 @@ do{
         if(cond == 1){
             printf("\nINVALIDO, DIGITE APENAS NUMEROS\n");
         }
-}while(len != 11  || cond != 0);
+  }while(len != 11  || cond != 0);                     //FIM "DO WHILE"
+
 
      printf("ENDERECO: ");				    
      setbuf(stdin,NULL);    				    
