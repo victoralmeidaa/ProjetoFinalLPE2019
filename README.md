@@ -13,16 +13,18 @@
       - [x] [Carro](#Carro)
       - Estrutura de dados de carro.
       - Função para ler dados do carro.
-      - Gravar dados do carro no aruivo txt.
+      - Gravar dados do carro no arquivo txt.
      
   
-      - [x] [Cadastro de Funcionario](#funcionario)
-      - ↳ 
-      : Cadastra funcionario no sistema
-      
-      - [x] [Cadastro de Serviço](#serviço)
-      - ↳ Escolher Funcionario
-      : Escolher um funcionario que ficará responsável pela serviço.
+      - [x] [Funcionario](#funcionario)
+      - Estrutura de dados do funcionario.
+      - Função para çer dados do funcionario.
+      - gravar dados do funcionario no arquivo txt.
+     
+      - [x] [Serviço](#serviço)
+      - Estrutura de dados do serviço.
+      - Função para ler dados do serviço.
+      - Gravar dados do serviço no arquivi txt.
       
    * [Consultar](#Consultar)
       - [x] [Consulta de Cliente](#consultar-cliente)
