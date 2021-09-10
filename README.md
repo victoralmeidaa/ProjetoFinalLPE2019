@@ -4,8 +4,15 @@
 
 <!--ts-->
    * [Criar](#Criar)
-      - [x] [Cadastro cliente](#Cliente)
-      - ↳ Cadastrar carro
+      - [x] [Cliente](#Cliente)
+      - Estrutura de dados do cliente.
+      - Função para ler dados do cliente.
+      - Gravar dados do cliente no arquivo txt.
+      ↳
+      
+      - [x] [Carro](#Carro)
+      - Estrutura de dados de carro
+      - Cadastrar carro
       : Logo após cadastrar o cliente o sistema pede para que seja cadastrado o veículo associado a este cliente.
   
       - [x] [Cadastro de Funcionario](#funcionario)
@@ -62,7 +69,7 @@
 Cliente
 ===========
 - ESTRUTURA CLIENTE
-```
+```bash
 typedef struct Cliente{                 	    //ESTRUTURA DO TIPO CLIENTE
     char nome[50];				    //NOME
     char cpf[10];				    //CPF
@@ -76,13 +83,13 @@ Cliente;
 - FUNÇÃO LER DADOS CLIENTE
 ```bash
 Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PARA LER DADOS DO CLIENTES
-Cliente cli;                                        //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO CLIENTE.
-printf("NOME: ");
-setbuf(stdin,NULL);
-gets(&cli.nome);				    //LER NOME CLIENTE.
+     Cliente cli;                                   //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO CLIENTE.
+     printf("NOME: ");
+     setbuf(stdin,NULL);
+     gets(&cli.nome);				    //LER NOME CLIENTE.
 
-int len;					    //VAREAVEL DE TIPO INT, SERVE PARA GUARDA A QUANTIDADE DE CARACTERES DIGITADO EM LER CPF
-int i,cond;					    
+     int len;					    //VAREAVEL DE TIPO INT, SERVE PARA GUARDA A QUANTIDADE DE CARACTERES DIGITADO EM LER CPF
+     int i,cond;					    
 do{
   cond=0;
   printf("DIGITE CPF COM 11 DIGITOS: ");            
@@ -103,12 +110,12 @@ do{
         }
 }while(len != 11  || cond != 0);
 
-printf("ENDERECO: ");				    
-setbuf(stdin,NULL);    				    
-gets(&cli.endereco); 				    //LER ENDERECO DO CLIENTE
-printf("ID: ");					    
-scanf("%d",&cli.idCli);				    //LER ID DO CLIENTE
-return cli;                                         //FUNCAO RETORNA ESTRUTURA DO TIPO CLIENTE.
+     printf("ENDERECO: ");				    
+     setbuf(stdin,NULL);    				    
+     gets(&cli.endereco); 			     //LER ENDERECO DO CLIENTE
+     printf("ID: ");				    
+     scanf("%d",&cli.idCli);		             //LER ID DO CLIENTE
+     return cli;                                     //FUNCAO RETORNA ESTRUTURA DO TIPO CLIENTE.
 }
 ```
 
@@ -136,6 +143,38 @@ system("cls");
 
 Cadastrar carro
 ===========
+- ESTRUTURA CARRO
+```bash
+typedef struct Carro{ //ESTRUTURA DO TIPO CARRO
+    char modelo[20];
+    char cor[20];
+    char placa[10];
+    int idCar;
+    int idCli;
+}
+Carro;
+```
+
+- FUNÇÃO LER DADOS CARRO
+```bash
+Carro GetCarro(){ 				   //FUNCAO DO TIPO CARRO PARA LER DADOS DE CARROS.
+    Carro car;					   //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO CARRO.
+    printf("MODELO: ");
+    setbuf(stdin,NULL);
+    gets(&car.modelo);
+    printf("COR: ");
+    setbuf(stdin,NULL);
+    gets(&car.cor);
+    printf("PLACA: ");
+    setbuf(stdin,NULL);
+    gets(&car.placa);
+    printf("ID CARRO:");
+    scanf("%d",&car.idCar);
+    return car;                                    //FUNCAO RETORNA ESTRUTURA DO TIPO CARRO.
+}
+```
+
+- APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO.TXT
 ```bash
 FILE *arq_carro;
 arq_carro = fopen("arquivo_carro.txt", "a");      //ABRIR ARQUIVO CARRO. "A" ABRE O ARQUIVO PARA GRAVAÇÃO.
