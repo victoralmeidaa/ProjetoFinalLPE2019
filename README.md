@@ -212,7 +212,18 @@ Funcionario Getfuncionario(){                       //FUNCAO DO TIPO FUNCIONARIO
 ```
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
-
+FILE *arq_funcionario;                              //PONTEIRO PARA ARQUIVO
+arq_funcionario = fopen("arquivo_funcionario.txt", "a"); //ABRIR ARQUIVO CLIENTE | "A" SIGNIFICA.......
+if(arq_funcionario ==  NULL){                       //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
+     printf("Erro na abertura do arquivo!");        //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
+}
+Funcionario fun;                                    //CRIANDO UMA VAREAVEL "CLI" DO TIPO DA STRUCT, CLIENTE.
+fun = Getfuncionario();                             //CHAMA FUNCAO PARA LER DADOS DO CLIENTE // RETORNAR DADOS PARA "CLI".
+fprintf(arq_funcionario,"%s %s %s %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun); //GRAVAR DADOS DA VAREAVEL "CLI" CLIENTE NO ARQUIVO CLIENTE
+fclose(arq_funcionario);                            //FECHAR ARQUIVO CLIENTE
+printf("Funcionario Cadastrado com Sucesso\n\n");   //MENSAGEM DE CONCLUSSAO
+system("pause");
+system("cls");
 ```
 
 Serviço
