@@ -131,7 +131,7 @@ system("cls");
 Carro
 ===========
 - ESTRUTURA CARRO
-```bash
+```js
 typedef struct Carro{                               //ESTRUTURA DO TIPO CARRO
     char modelo[20];                                //MODELO 
     char cor[20];                                   //COR
