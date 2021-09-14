@@ -349,11 +349,11 @@ Consultar funcionario
 ```bash
 printf("| Digite o ID do Funcionario: ");
 scanf ("%d",&consultaIDFUN);
-int confirmaSeFuncionarioExiste = 0;                //SE 0 == CLIENTE NAO EXISTE  |  SE 1 == CLIENTE EXISTE.
+int confirmaSeFuncionarioExiste = 0;                //SE 0 == FUNCIONARIO NAO EXISTE  |  SE 1 == FUNCIONARIO EXISTE.
 
-Funcionario fun;                                    //
-Servico serv;                                       //
-int auxIDFun;                                       // AUXILIAR PARA GUARDA ID DO CLIENTE QUE FOI CONSULTADO.
+Funcionario fun;                                    //CRIA VAREAVEL DE ESTRUTURA DO TIPO FUNCIONARIO.
+Servico serv;                                       //CRIA VAREAVEL DE ESTRUTURA DO TIPO SERVIÇO
+int auxIDFun;                                       //AUXILIAR PARA GUARDA ID DO FUNCIONARIO QUE FOI CONSULTADO.
 
 FILE *arq_funcionario;                              //PONTEIRO PARA ARQUIVO.
 arq_funcionario = fopen("arquivo_funcionario.txt", "r"); //ABRIR ARQUIVO FUNCIONARIO | "R" ABRE ARQUIVO PARA LEITURA
