@@ -143,7 +143,7 @@ Carro;
 ```
 
 - FUNÇÃO LER DADOS CARRO
-```c
+```c++
 Carro GetCarro(){ 				    //FUNCAO DO TIPO CARRO PARA LER DADOS DE CARROS.
     Carro car;					    //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO CARRO.
     printf("MODELO: ");
