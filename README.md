@@ -55,7 +55,7 @@
 Cliente
 ===========
 - ESTRUTURA CLIENTE
-```bash
+```js
 typedef struct Cliente{                 	    //ESTRUTURA DO TIPO CLIENTE
     char nome[50];				    //NOME
     char cpf[10];				    //CPF
