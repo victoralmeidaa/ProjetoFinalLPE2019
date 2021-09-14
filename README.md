@@ -432,7 +432,7 @@ fclose(temp_funcionario);                           //FECHA ARQUIVO TEMP_FUNCONA
 remove("arquivo_funcionario.txt");                  //EXCLUIR ARQUIVO FUNCIONARIO.
 rename("temp_funcionario.txt", "arquivo_funcionario.txt"); // RENOMEAR ARQUIVO TEMP_FUNCIONARIO PARA ARQUIVO FUNCIONARIO.
 printf("\nFUNCIONARIO EXCLUIDO!\n");                //MENSAGEM DE CONCLUSÃO.
-system("pause");                                    //PAUSA SISTEMA, AGUARDA PROXIMO COMENDO.
+system("pause");                                    //PAUSA SISTEMA, AGUARDA PROXIMO COMANDO.
 system("cls");                                      //LIMPAR TELA.
 ```
 Excluir serviço
