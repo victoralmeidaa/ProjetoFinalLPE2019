@@ -85,7 +85,7 @@ Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PAR
 	 len = strlen(cli.cpf);			    //GUARDA A QUANTIDADE DE CARACTERES INFORMADOS EM "CLI.CPF"
 	 if (len == 11){				    
      	    for(i=0; i<len; i++){                   //LAÇO PARA LER TODOS OS 11 CARACTERES DE "CLI.CPF"
-              if(!isdigit(cli.cpf[i])){		    //FUNCAO "ISDIGIT()" VERIFICA SE O VALOR PASSADO E UM INT OU STRING
+              if(!isdigit(cli.cpf[i])){		    //FUNÇAO "ISDGIT()" VERIFICA SE O VALOR DIGITADO E UM CARACTERE NUMERICO OU NÃO | RETORNA VALOR BOLEANO
                  cond = 1;
               }
             }
