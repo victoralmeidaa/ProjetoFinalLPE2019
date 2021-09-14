@@ -183,7 +183,7 @@ system("cls");;
 Funcionario
 ===========
 - ESTRUTURA FUNCIONARIO
-```bash
+```c
 typedef struct Funcionario{                         //ESTRUTURA DO TIPO FUNCINARIO
     char nome[20];                                  //NOME
     char cpf[10];                                   //CPF
@@ -193,7 +193,7 @@ typedef struct Funcionario{                         //ESTRUTURA DO TIPO FUNCINAR
 Funcionario;
 ```
 - FUNÇÃO LER DADOS
-```bash
+```jsx
 Funcionario Getfuncionario(){                       //FUNCAO DO TIPO FUNCIONARIO PARA LER DADOS DE CARROS
     Funcionario fun;                                //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO FUNCIONARIO.
     printf("NOME: ");
@@ -211,7 +211,7 @@ Funcionario Getfuncionario(){                       //FUNCAO DO TIPO FUNCIONARIO
 }
 ```
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
-```bash
+```jsx
 FILE *arq_funcionario;                              //PONTEIRO PARA ARQUIVO
 arq_funcionario = fopen("arquivo_funcionario.txt", "a"); //ABRIR ARQUIVO FUNCIONARIO | "A" ABRE ARQUIVO PARA ADICIONAR GRAVAÇÃO | CASO O ARQUIVO NÃO EXISTA, ELE CRIA O ARQUIVO.
 if(arq_funcionario ==  NULL){                       //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
@@ -229,7 +229,7 @@ system("cls");
 Serviço
 ===========
 - ESTRUTURA SERVIÇO
-```bash
+```c
 typedef struct Servico{                              //ESTRUTURA DO TIPO SERVICO
     char titulo[20];                                 //TITULO
     char preco[50];                                  //PREÇO
@@ -240,7 +240,7 @@ typedef struct Servico{                              //ESTRUTURA DO TIPO SERVICO
 Servico;
 ```
 - FUNÇÃO LER DADOS
-```bash 
+```jsx
 Servico GetServico(){                                //FUNCAO PARA LER DADOS DE CARROS
     Servico serv;                                    //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO SERVICO.
     printf("TITULO: ");
@@ -255,7 +255,7 @@ Servico GetServico(){                                //FUNCAO PARA LER DADOS DE 
 }
 ```
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
-```bash
+```jsx
 printf("| Digite o ID do Cliente: ");               //PEDINDO O ID DO CLIENTE PARA CONSULTAR SE EXISTE NO SISTEMA.
 scanf ("%d",&consultaID);                           //LER ID INFORMADO PELO USUARIO
 int confirmaSeClienteExiste = 0;                    //VAREAVEL DE CONFIRMAÇÃO CLIENTE   SE 0 == CLIENTE NAO EXISTE  |  SE 1 == CLIENTE EXISTE.
@@ -341,12 +341,12 @@ system("cls");
 # CONSULTAR
 Consultar cliente
 ============
-```bash
+```jsx
 
 ```
 Consultar funcionario
 ===========
-```bash
+```jsx
 printf("| Digite o ID do Funcionario: ");
 scanf ("%d",&consultaIDFUN);
 int confirmaSeFuncionarioExiste = 0;                //SE 0 == FUNCIONARIO NAO EXISTE  |  SE 1 == FUNCIONARIO EXISTE.
@@ -375,17 +375,17 @@ system("cls");
 ```
 Consultar serviço
 ===========
-```bash
+```jsx
 ```
 
 # LISTAR
 Listar cliente
 ===========
-```bash
+```jsx
 ```
 Listar funcionario
 ===========
-```bash
+```jsx
 Funcionario fun;
 FILE *arq_funcionario;                              //PONTEIRO PARA ARQUIVO
 arq_funcionario = fopen("arquivo_funcionario.txt", "r"); //ABRIR ARQUIVO FUNCIONARIO | "R" ABRIR O ARQUIVO PARA LEITURA
@@ -399,17 +399,17 @@ system("cls");                                      //LIMPA TELA.
 ```
 Listar serviço
 ===========
-```bash
+```jsx
 ```
 
 # EXCLUIR
 Excluir cliente
 ===========
-```bash
+```jsx
 ```
 Excluir funcionario
 ===========
-```bash
+```jsx
 printf("| DIGITE O ID DO FUNCIONARIO PARA EXCLUIR: ");
 int excluirIDFUN;                                   //CRIA VAREAVEL PARA SALVAR ID FUNCIONARIO EXCLUIRDO
 scanf("%d",&excluirIDFUN);                          //LER ID FUNCIONARIO EXCLUIDO 
@@ -437,5 +437,5 @@ system("cls");                                      //LIMPAR TELA.
 ```
 Excluir serviço
 ==========
-```bash
+```jsx
 ```
