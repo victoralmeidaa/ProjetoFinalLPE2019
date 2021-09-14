@@ -358,8 +358,8 @@ int auxIDFun;                                       //AUXILIAR PARA GUARDA ID DO
 FILE *arq_funcionario;                              //PONTEIRO PARA ARQUIVO.
 arq_funcionario = fopen("arquivo_funcionario.txt", "r"); //ABRIR ARQUIVO FUNCIONARIO | "R" ABRE ARQUIVO PARA LEITURA
 while(fscanf(arq_funcionario,"%s %s %s %d",fun.nome,fun.cpf,fun.endereco,&fun.idFun)!= EOF){ //LAÇO PARA LER TODAS AS LINHAS DO ARQUIVO
-if(consultaIDFUN == fun.idFun){                     //CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
-printf("\n=== DADOS FUNCIONARIO ===\nNOME: %s\nCPF: %s\nENDERECO: %s\nID FUNCIONARIO: %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun); //RETORNA OS DADOS DO FUNCIONARIO DESEJADO
+  if(consultaIDFUN == fun.idFun){                   //CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
+    printf("\n=== DADOS FUNCIONARIO ===\nNOME: %s\nCPF: %s\nENDERECO: %s\nID FUNCIONARIO: %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun); //RETORNA OS DADOS DO FUNCIONARIO DESEJADO
 confirmaSeFuncionarioExiste = 1;                    //SE ENTROU NA CONDICIONAL SIGNIFICA QUE O FUNCIONARIO EXISTE, VAREAVEL RECEBE 1.
 auxIDFun = fun.idFun;                               //GUARDANDO O ID DO FUNCIONARIO CONSULTADO NA VAREAVEL AUXILIAR.
 } //FIM DA CONDICIONAL
@@ -386,6 +386,16 @@ Listar cliente
 Listar funcionario
 ===========
 ```bash
+Funcionario fun;
+FILE *arq_funcionario;                              //PONTEIRO PARA ARQUIVO
+arq_funcionario = fopen("arquivo_funcionario.txt", "r"); //ABRIR ARQUIVO FUNCIONARIO | "R" ABRIR O ARQUIVO PARA LEITURA
+while(fscanf(arq_funcionario,"%s %s %s %d",fun.nome,fun.cpf,fun.endereco,&fun.idFun)!= EOF){ //LAÇO PARA LER TODAS AS LINHAS DO ARQUIVO FUNCIONARIO
+   printf("NOME: %s\nCPF: %s\nENDERECO: %s\nID FUNCIONARIO: %d\n=================================\n",fun.nome,fun.cpf,fun.endereco,fun.idFun); //PRINT OS DADOS DO(s) FUNCIONARIO(s) NA TELA
+}
+
+fclose(arq_funcionario);                            //FECHA O ARQUIVO FUNCIONARIO.
+system("pause");                                    //PAUSA O SISTEMA, AGUARDA PROXIMO COMANDO.
+system("cls");                                      //LIMPA TELA.
 ```
 Listar serviço
 ===========
@@ -400,6 +410,30 @@ Excluir cliente
 Excluir funcionario
 ===========
 ```bash
+printf("| DIGITE O ID DO FUNCIONARIO PARA EXCLUIR: ");
+int excluirIDFUN;                                   //CRIA VAREAVEL PARA SALVAR ID FUNCIONARIO EXCLUIRDO
+scanf("%d",&excluirIDFUN);                          //LER ID FUNCIONARIO EXCLUIDO 
+
+Funcionario fun;                                    //CRIA VAREAVEL DO TIPO FUNCIONARIO "FUN"
+FILE *temp_funcionario, *arq_funcionario;           //ARQUIVO TEMPORARIO
+
+if((arq_funcionario = fopen("arquivo_funcionario.txt", "rb")) == NULL);
+if((temp_funcionario = fopen("temp_funcionario.txt","wb")) == NULL);
+
+// PASSA TODOS OS REGISTROS DO ARQUIVO FUNCIONARIO PARA O ARQUIVO TEMP_FUNCIONARIO, EXCETO O REGISTRO COM O ID QUE SERA EXCLUIDO
+while(fscanf(arq_funcionario,"%s %s %s %d",fun.nome,fun.cpf,fun.endereco,&fun.idFun) != EOF){ //LAÇO PARA LER TODAS AS LINHAS DO ARQUIVO FUNCIONARIO.
+  if(excluirIDFUN != fun.idFun){                    //SE O ID DESTA LINHA FOR DIFERENTE DO ID INFORMADO NA VAREAVEL "excluirIDFUN"
+    fprintf(temp_funcionario,"%s %s %s %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun); //SALVA OS DADOS DO FUNCIONARIO DA LINHA ATUAL NO ARQUIVO TEMP_FUNCIONARIO.
+  }
+}
+fclose(arq_funcionario);                            //FECHA ARQUIVO FUNCIONARIO.
+fclose(temp_funcionario);                           //FECHA ARQUIVO TEMP_FUNCONARIO.
+
+remove("arquivo_funcionario.txt");                  //EXCLUIR ARQUIVO FUNCIONARIO.
+rename("temp_funcionario.txt", "arquivo_funcionario.txt"); // RENOMEAR ARQUIVO TEMP_FUNCIONARIO PARA ARQUIVO FUNCIONARIO.
+printf("\nFUNCIONARIO EXCLUIDO!\n");                //MENSAGEM DE CONCLUSÃO.
+system("pause");                                    //PAUSA SISTEMA, AGUARDA PROXIMO COMENDO.
+system("cls");                                      //LIMPAR TELA.
 ```
 Excluir serviço
 ==========
