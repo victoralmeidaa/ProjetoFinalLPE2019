@@ -67,7 +67,7 @@ Cliente;
 ```
 
 - FUNÇÃO LER DADOS CLIENTE
-```bash
+```jsx
 Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PARA LER DADOS DO CLIENTES
      Cliente cli;                                   //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO CLIENTE.
      printf("NOME: ");
@@ -109,7 +109,7 @@ Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PAR
 
 
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO.TXT
-```bash
+```jsx
 FILE *arq_cliente;                                  //PONTEIRO PARA ARQUIVO
 arq_cliente = fopen("arquivo_cliente.txt", "a");    //ABRIR ARQUIVO CLIENTE | "A" ABRE O ARQUIVO PARA ADICIONAR GRAVAÇÃO | CASO O ARQUIVO NÃO EXISTA, ELE CRIA O ARQUIVO.
 if(arq_cliente ==  NULL){                           //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
