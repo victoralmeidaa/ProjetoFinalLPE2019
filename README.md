@@ -55,7 +55,7 @@
 Cliente
 ===========
 - ESTRUTURA CLIENTE
-```jsx
+```c
 typedef struct Cliente{                 	    //ESTRUTURA DO TIPO CLIENTE
     char nome[50];				    //NOME
     char cpf[10];				    //CPF
@@ -143,7 +143,7 @@ Carro;
 ```
 
 - FUNÇÃO LER DADOS CARRO
-```c++
+```jsx
 Carro GetCarro(){ 				    //FUNCAO DO TIPO CARRO PARA LER DADOS DE CARROS.
     Carro car;					    //CRIANDO VAREAVEL DE ESTRUTURA DO TIPO CARRO.
     printf("MODELO: ");
@@ -162,7 +162,7 @@ Carro GetCarro(){ 				    //FUNCAO DO TIPO CARRO PARA LER DADOS DE CARROS.
 ```
 
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
-```c
+```jsx
 FILE *arq_carro;
 arq_carro = fopen("arquivo_carro.txt", "a");        //ABRIR ARQUIVO CARRO. | "A" ABRE O ARQUIVO PARA ADICIONAR GRAVAÇÃO | CASO O ARQUIVO NÃO EXISTA, ELE CRIA O ARQUIVO.
 if(arq_carro ==  NULL){                             //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CARRO
