@@ -111,7 +111,7 @@ Cliente GetCliente(){                               //FUNCAO DO TIPO CLIENTE PAR
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO.TXT
 ```bash
 FILE *arq_cliente;                                  //PONTEIRO PARA ARQUIVO
-arq_cliente = fopen("arquivo_cliente.txt", "a");    //ABRIR ARQUIVO CLIENTE | "A" ABRE O ARQUIVO PARA GRAVAÇÃO.
+arq_cliente = fopen("arquivo_cliente.txt", "a");    //ABRIR ARQUIVO CLIENTE | "A" ABRE O ARQUIVO PARA ADICIONAR GRAVAÇÃO | CASO O ARQUIVO NÃO EXISTA, ELE CRIA O ARQUIVO.
 if(arq_cliente ==  NULL){                           //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
     printf("Erro na abertura do arquivo!");         //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
 }
@@ -164,7 +164,7 @@ Carro GetCarro(){ 				    //FUNCAO DO TIPO CARRO PARA LER DADOS DE CARROS.
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
 FILE *arq_carro;
-arq_carro = fopen("arquivo_carro.txt", "a");        //ABRIR ARQUIVO CARRO. | "A" ABRE O ARQUIVO PARA GRAVAÇÃO.
+arq_carro = fopen("arquivo_carro.txt", "a");        //ABRIR ARQUIVO CARRO. | "A" ABRE O ARQUIVO PARA ADICIONAR GRAVAÇÃO | CASO O ARQUIVO NÃO EXISTA, ELE CRIA O ARQUIVO.
 if(arq_carro ==  NULL){                             //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CARRO
     printf("ERRO NA ABERTURA DO ARQUIVO!");         //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
     return 1;
@@ -213,7 +213,7 @@ Funcionario Getfuncionario(){                       //FUNCAO DO TIPO FUNCIONARIO
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
 FILE *arq_funcionario;                              //PONTEIRO PARA ARQUIVO
-arq_funcionario = fopen("arquivo_funcionario.txt", "a"); //ABRIR ARQUIVO FUNCIONARIO | "A" ABRE ARQUIVO PARA GRAVAÇÃO
+arq_funcionario = fopen("arquivo_funcionario.txt", "a"); //ABRIR ARQUIVO FUNCIONARIO | "A" ABRE ARQUIVO PARA ADICIONAR GRAVAÇÃO | CASO O ARQUIVO NÃO EXISTA, ELE CRIA O ARQUIVO.
 if(arq_funcionario ==  NULL){                       //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
      printf("Erro na abertura do arquivo!");        //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
 }
@@ -306,7 +306,7 @@ fclose(arq_carro);                                  //FECHAR ARQUIVO CARRO.
 						
 printf("\nCRIAR SERVICO\n");
 FILE *arq_servico;                                  //PONTEIRO PARA ARQUIVO SERVIÇO
-arq_servico = fopen("arquivo_servico.txt", "a");    //ABRIR ARQUIVO CLIENTE | "A" ABRE ARQUIVO PARA GRAVAÇÃO
+arq_servico = fopen("arquivo_servico.txt", "a");    //ABRIR ARQUIVO CLIENTE | "A" ABRE ARQUIVO PARA ADICIONAR GRAVAÇÃO | CASO ARQUIVO NÃO EXISTA, ELE CRIA O ARQUIVO.
 if(arq_servico ==  NULL){                           //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
   printf("Erro na abertura do arquivo!");           //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
 }
@@ -415,10 +415,10 @@ int excluirIDFUN;                                   //CRIA VAREAVEL PARA SALVAR 
 scanf("%d",&excluirIDFUN);                          //LER ID FUNCIONARIO EXCLUIDO 
 
 Funcionario fun;                                    //CRIA VAREAVEL DO TIPO FUNCIONARIO "FUN"
-FILE *temp_funcionario, *arq_funcionario;           //ARQUIVO TEMPORARIO
+FILE *temp_funcionario, *arq_funcionario;           //PONTEIRO PARA ARQUIVO TEMPORARIO, ARQUIVO FUNCIONARIO
 
-if((arq_funcionario = fopen("arquivo_funcionario.txt", "rb")) == NULL);
-if((temp_funcionario = fopen("temp_funcionario.txt","wb")) == NULL);
+if((arq_funcionario = fopen("arquivo_funcionario.txt", "rb")) == NULL); //ABRE ARQUIVO FUNCIONARIO | "RB" ABRE ARQUIVO BINARIO PARA LEITURA
+if((temp_funcionario = fopen("temp_funcionario.txt","wb")) == NULL); //ABRE ARQUIVO TEM_FUNCIONARIO | "WB" CRIA ARQUIVO BINARIO PARA GRAVAÇÃO
 
 // PASSA TODOS OS REGISTROS DO ARQUIVO FUNCIONARIO PARA O ARQUIVO TEMP_FUNCIONARIO, EXCETO O REGISTRO COM O ID QUE SERA EXCLUIDO
 while(fscanf(arq_funcionario,"%s %s %s %d",fun.nome,fun.cpf,fun.endereco,&fun.idFun) != EOF){ //LAÇO PARA LER TODAS AS LINHAS DO ARQUIVO FUNCIONARIO.
