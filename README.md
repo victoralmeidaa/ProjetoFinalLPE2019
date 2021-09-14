@@ -213,14 +213,14 @@ Funcionario Getfuncionario(){                       //FUNCAO DO TIPO FUNCIONARIO
 - APLICANDO A FUNÇÃO | GUARDANDO DADOS NO ARQUIVO TXT.
 ```bash
 FILE *arq_funcionario;                              //PONTEIRO PARA ARQUIVO
-arq_funcionario = fopen("arquivo_funcionario.txt", "a"); //ABRIR ARQUIVO CLIENTE | "A" SIGNIFICA.......
+arq_funcionario = fopen("arquivo_funcionario.txt", "a"); //ABRIR ARQUIVO FUNCIONARIO | "A" ABRE ARQUIVO PARA GRAVAÇÃO
 if(arq_funcionario ==  NULL){                       //VERIFICAR SE OUVE ERRO AO ABRIR O ARQUIVO CLIENTE
      printf("Erro na abertura do arquivo!");        //RETORNAR MENSAGEM DE ERRO CASO OUVER ERRO QUANDO ABRIR O ARQUIVO
 }
-Funcionario fun;                                    //CRIANDO UMA VAREAVEL "CLI" DO TIPO DA STRUCT, CLIENTE.
-fun = Getfuncionario();                             //CHAMA FUNCAO PARA LER DADOS DO CLIENTE // RETORNAR DADOS PARA "CLI".
-fprintf(arq_funcionario,"%s %s %s %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun); //GRAVAR DADOS DA VAREAVEL "CLI" CLIENTE NO ARQUIVO CLIENTE
-fclose(arq_funcionario);                            //FECHAR ARQUIVO CLIENTE
+Funcionario fun;                                    //CRIANDO UMA VAREAVEL "FUN" DO TIPO DA STRUCT, FUNCIONARIO.
+fun = Getfuncionario();                             //CHAMA FUNCAO PARA LER DADOS DO FUNCIONARIO // RETORNAR DADOS PARA "FUN".
+fprintf(arq_funcionario,"%s %s %s %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun); //GRAVAR DADOS DA VAREAVEL "FUN" FUNCIONARIO NO ARQUIVO FUNCIONARIO
+fclose(arq_funcionario);                            //FECHAR ARQUIVO FUNCIONARIO
 printf("Funcionario Cadastrado com Sucesso\n\n");   //MENSAGEM DE CONCLUSSAO
 system("pause");
 system("cls");
@@ -342,10 +342,36 @@ system("cls");
 Consultar cliente
 ============
 ```bash
+
 ```
 Consultar funcionario
 ===========
 ```bash
+printf("| Digite o ID do Funcionario: ");
+scanf ("%d",&consultaIDFUN);
+int confirmaSeFuncionarioExiste = 0;                //SE 0 == CLIENTE NAO EXISTE  |  SE 1 == CLIENTE EXISTE.
+
+Funcionario fun;                                    //
+Servico serv;                                       //
+int auxIDFun;                                       // AUXILIAR PARA GUARDA ID DO CLIENTE QUE FOI CONSULTADO.
+
+FILE *arq_funcionario;                              //PONTEIRO PARA ARQUIVO.
+arq_funcionario = fopen("arquivo_funcionario.txt", "r"); //ABRIR ARQUIVO FUNCIONARIO | "R" ABRE ARQUIVO PARA LEITURA
+while(fscanf(arq_funcionario,"%s %s %s %d",fun.nome,fun.cpf,fun.endereco,&fun.idFun)!= EOF){ //LAÇO PARA LER TODAS AS LINHAS DO ARQUIVO
+if(consultaIDFUN == fun.idFun){                     //CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
+printf("\n=== DADOS FUNCIONARIO ===\nNOME: %s\nCPF: %s\nENDERECO: %s\nID FUNCIONARIO: %d\n",fun.nome,fun.cpf,fun.endereco,fun.idFun); //RETORNA OS DADOS DO FUNCIONARIO DESEJADO
+confirmaSeFuncionarioExiste = 1;                    //SE ENTROU NA CONDICIONAL SIGNIFICA QUE O FUNCIONARIO EXISTE, VAREAVEL RECEBE 1.
+auxIDFun = fun.idFun;                               //GUARDANDO O ID DO FUNCIONARIO CONSULTADO NA VAREAVEL AUXILIAR.
+} //FIM DA CONDICIONAL
+}// FIM DO LACO.
+if(confirmaSeFuncionarioExiste == 0){               //SO ENTRA NESSA CONDICAO CASO O FUNCIONARIO NAO EXISTA, VALOR DA VAREAVEL == 0.
+printf("\nFUNCIONARIO NAO ENCONTRADO\n");           // PRINTA MENSAGEM
+system("pause");
+system("cls");
+break;                                              //ENCERRA A CONTINUACAO DO PROGRAMA E VOLTA PARA O MENUR PRINCIPAL.
+}
+system("pause");
+system("cls");
 ```
 Consultar serviço
 ===========
