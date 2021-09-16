@@ -342,7 +342,32 @@ system("cls");
 Consultar cliente
 ============
 ```jsx
+printf("| Digite o ID do Cliente: ");
+scanf ("%d",&consultaID);                           //LER ID CLIENTE PARA CONSULTA
+int confirmaSeClienteExiste = 0;                    //VAREAVEL DE CONFIMACAO, SE 0 == CLIENTE NAO EXISTE  |  SE 1 == CLIENTE EXISTE.
+Cliente cli;                                        //
+int auxIDCli;                                       //AUXILIAR PARA GUARDA ID DO CLIENTE QUE FOI CONSULTADO.
 
+FILE *arq_cliente;                                  //PONTEIRO PARA ARQUIVO.
+arq_cliente = fopen("arquivo_cliente.txt", "r");    //ABRIR ARQUIVO CLIENTE | "R" ABRE O ARQUIVO PARA LEITURA.
+while(fscanf(arq_cliente,"%s %s %s %d",cli.nome,cli.cpf,cli.endereco,&cli.idCli)!= EOF){ //LACO PARA LER TODAS AS LINHAS DO ARQUIVO CLIENTE
+  if(consultaID == cli.idCli){                      //CONDICIONAL PARA COMPARAR OS IDs CADASTRADOS NO ARQUIVO CASO ENCONTRE O ID DESEJADO RETORNA OS DADOS ASSOCIADOS
+    printf("\n=== DADOS CLIENTE ===\nNOME: %s\nCPF: %s\nENDERECO: %s\nID CLIENTE: %d\n",cli.nome,cli.cpf,cli.endereco,cli.idCli); //RETORNA OS DADOS DO CLIENTE DESEJADO
+    confirmaSeClienteExiste = 1;                    //SE ENTROU NA CONDICIONAL SIGNIFICA QUE O CLIENTE EXISTE, VAREAVEL DE CONFIERMACAO == 1.
+    auxIDCli = cli.idCli;                           //GUARDANDO O ID DO CLIENTE CONSULTADO NA VAREAVEL AUXILIAR.
+  }                                                 //FIM DA CONDICIONAL
+}                                                   // FIM DO LACO.
+
+if(confirmaSeClienteExiste == 0){                   //SO ENTRA NESSA CONDICAO CASO O CLIENTE NAO EXISTA, VAREAVEL DE CONFIRMACAO == 0.
+  printf("\nCLIENTE NAO ENCONTRADO\n");             //PRINTA MENSAGEM
+  fclose(arq_cliente);                              //FECHAR ARQUIVO CLIENTE.
+  system("pause");
+  system("cls");
+  break;                                            //ENCERRA A CONTINUACAO DO PROGRAMA E VOLTA PARA O MENUR PRINCIPAL.
+}
+fclose(arq_cliente);                                //FECHAR ARQUIVO CLIENTE.
+system("pause");
+system("cls");
 ```
 Consultar funcionario
 ===========
